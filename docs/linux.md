@@ -1,9 +1,9 @@
 # Setup
 
 ## Installation
-1. Download a data package for the desired game version.
+1. [Download](../README.md#Linux-Packages) a data package for the desired game version.
 2. Create a "StarCraft II" folder and extract the contents into this folder.
-3. Follow the steps in the [README](../README.md) to install the desired replay and map packs.
+3. Install the desired [map and replay packs](../README.md#installing-map-and-replay-packs).
 
 ## Command line options
 

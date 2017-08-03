@@ -14,21 +14,21 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 * **Protocol**
     * Protobuf protocol definition of the API.
-    * [Definition](sc2api.proto)
-    * [Documentation](docs/protobuf.md)
+    * [Definition](s2clientprotocol/sc2api.proto)
+    * [Documentation](docs/protocol.md)
 * **Reference C++ implementation**
     * Library designed for building a scripted bots using the API.
     * [Repository](https://github.com/Blizzard/s2client-api)
-* **StarCraft II Linux Package**
+* **StarCraft II Linux Packages**
     * Self contained headless linux StarCraft II builds.
     * [Documentation](docs/linux.md)
-    * [Download Links](#Linux-Packages)
+    * [Download Links](#linux-packages)
 * **Maps**
     * Maps from the 1v1 ladder and other custom maps.
-    * [Download Links](#Map-Packs)
+    * [Download Links](#map-packs)
 * **Replays**
     * Replay packs of 1v1 ladder games.
-    * [Download Links](#Replay-Packs)
+    * [Download Links](#replay-packs)
 
 # Downloads
 
@@ -49,8 +49,7 @@ EULA disclaimer
 
 EULA disclaimer
 
-### SC2.3.16.1
-* [Pack 1](http://www.github.com)
+* [SC2.3.16.1 - Pack 1](http://www.github.com)
 
 # Installing Map and Replay Packs
 
