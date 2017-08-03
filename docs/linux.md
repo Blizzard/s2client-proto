@@ -2,19 +2,18 @@
 
 ## Installation
 1. Download a data package for the desired game version.
-2. Download a binary compatible with that data package.
-    * Place the binary in the appropriate "Versions/BaseXXXXX/. (Where XXXXX is the build number)
-4. If using to process replays, download the desired replay pack. 
-    * Place the contained "Battle.net" folder in the root directory of the data package.
-5. If using to play games, download the desired maps package.
-    * Place the contents in the "Maps" folder located in the root directory of the data package.
-6. Launch the binary with the "listen" and "port" command line.
+2. Create a "StarCraft II" folder and extract the contents into this folder.
+3. Follow the steps in the [README](../README.md) to install the desired replay and map packs.
 
 ## Command line options
+
+Required:
 * **listen**
     * Sets the ip address that the websocket server will listen on.
 * **port**
     * Sets the port that the websocket server will listen on.
+
+Optional:
 * **dataDir**
     * Override the path to find the data package.
     * Required if the binary is not in the standard versions folder location. 
