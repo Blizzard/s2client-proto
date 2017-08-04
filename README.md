@@ -22,13 +22,13 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 * **StarCraft II Linux Packages**
     * Self contained headless linux StarCraft II builds.
     * [Documentation](docs/linux.md)
-    * [Download Links](#linux-packages)
+    * [Download](#linux-packages)
 * **Maps**
     * Maps from the 1v1 ladder and other custom maps.
-    * [Download Links](#map-packs)
+    * [Download](#map-packs)
 * **Replays**
     * Replay packs of 1v1 ladder games.
-    * [Download Links](#replay-packs)
+    * [Download](#replay-packs)
 
 # Downloads
 
@@ -36,7 +36,7 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 EULA disclaimer
 
-* [SC2.3.16.1](http://www.github.com)
+* [3.16.1](http://www.github.com)
 
 ## Map Packs
 
@@ -49,7 +49,7 @@ EULA disclaimer
 
 EULA disclaimer
 
-* [SC2.3.16.1 - Pack 1](http://www.github.com)
+* [3.16.1 - Pack 1](http://www.github.com)
 
 # Installing Map and Replay Packs
 
@@ -71,9 +71,10 @@ Standard folder layout:
     * SC2Data/
     * Versions/
 
-To install a map pack: 
+## Map Packs
 * Extract the zip file directly into the "Maps" folder.
-* A map can be referred to by either an absolute path or its relative path inside the maps folder.
-To install a replay pack:
+* In the API, a map can be specified as either an absolute path or its relative path inside this "Maps" folder.
+
+## Replay Packs
 * Replace the "Battle.net" and "Replays" folders with the ones in the zip file.
-* A replay must be specified as an absolute path.
+* In the API, a replay must be specified as an absolute path.
