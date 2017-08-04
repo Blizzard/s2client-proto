@@ -14,18 +14,67 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 * **Protocol**
     * Protobuf protocol definition of the API.
-    * [Protocol definition](sc2api.proto)
-    * [Protocol documentation](docs/protobuf.md)
+    * [Definition](s2clientprotocol/sc2api.proto)
+    * [Documentation](docs/protocol.md)
 * **Reference C++ implementation**
     * Library designed for building a scripted bots using the API.
     * [Repository](https://github.com/Blizzard/s2client-api)
-* **StarCraft II Linux Package**
+* **StarCraft II Linux Packages**
     * Self contained headless linux StarCraft II builds.
-    * [Data packages](http://www.github.com)
-    * [Binaries](http://www.github.com)
+    * [Documentation](docs/linux.md)
+    * [Download](#linux-packages)
 * **Maps**
-    * Maps from the 1v1 ladder.
-    * [Download directory](http://www.github.com)
+    * Maps from the 1v1 ladder and other custom maps.
+    * [Download](#map-packs)
 * **Replays**
     * Replay packs of 1v1 ladder games.
-    * [Download directory](http://www.github.com)
+    * [Download](#replay-packs)
+
+# Downloads
+
+## Linux Packages
+
+EULA disclaimer
+
+* [3.16.1](http://www.github.com)
+
+## Map Packs
+
+EULA disclaimer
+
+* [Ladder 2017 Season 3](http://www.github.com)
+* [Melee](http://www.github.com)
+
+## Replay Packs
+
+EULA disclaimer
+
+* [3.16.1 - Pack 1](http://www.github.com)
+
+# Installing Map and Replay Packs
+
+All additional game data should be extracted within the installation directory.
+
+The default installation directories are:
+* Windows: C:\Program Files (x86)\StarCraft II\
+* Mac: /Applications/StarCraft II/
+
+On Linux, the installation directory is the folder you extracted the linux package into.
+
+The folder structure is the same accross all platforms. However you may need to create some folders if they are missing.
+
+Standard folder layout:
+* StarCraft II/
+    * Battle.net/
+    * Maps/
+    * Replays/
+    * SC2Data/
+    * Versions/
+
+## Map Packs
+* Extract the zip file directly into the "Maps" folder.
+* In the API, a map can be specified as either an absolute path or its relative path inside this "Maps" folder.
+
+## Replay Packs
+* Replace the "Battle.net" and "Replays" folders with the ones in the zip file.
+* In the API, a replay must be specified as an absolute path.
