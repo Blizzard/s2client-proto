@@ -60,9 +60,9 @@ class BuildPy(build_py):
 setup(
     name='s2clientprotocol',
     version='1.0',
-    description='Starcraft II client protocol.',
+    description='StarCraft II - client protocol.',
     author='Blizzard',
-    author_email='...',
+    author_email='jrepp@blizzard.com',
     license='MIT',
     packages=[
         's2clientprotocol',
