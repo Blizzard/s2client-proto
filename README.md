@@ -12,6 +12,8 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 # Contents
 
+## Official
+
 * **Protocol**
     * Protobuf protocol definition of the API.
     * [Definition](s2clientprotocol/sc2api.proto)
@@ -29,6 +31,15 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 * **Replays**
     * Replay packs of 1v1 ladder games.
     * [Download](#replay-packs)
+
+## Community
+
+* **PySC2**
+   * DeepMind's python environment wrapper. 
+   * [Repository](https://github.com/deepmind/pysc2)
+* **Command Center**
+   * Framework for developing scripted bots.
+   * [Repository](https://github.com/davechurchill/CommandCenter)
 
 # Downloads
 
