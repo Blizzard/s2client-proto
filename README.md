@@ -37,8 +37,8 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 * **PySC2**
    * DeepMind's python environment wrapper. 
    * [Repository](https://github.com/deepmind/pysc2)
-* **Command Center**
-   * Framework for developing scripted bots.
+* **CommandCenter**
+   * A robust architecture for quickly developing Starcraft AI bots.
    * [Repository](https://github.com/davechurchill/CommandCenter)
 
 # Downloads
