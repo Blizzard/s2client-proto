@@ -47,16 +47,16 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 By downloading these additional files, you are agreeing to the [AI AND MACHINE LEARNING LICENSE](DATA_LICENSE).
 
-* [3.16.1](http://www.github.com)
+* [3.16.1](http://blzdistsc2-a.akamaihd.net/Linux/SC2.3.16.1.zip)
 
 ## Map Packs
 
 By downloading these additional files, you are agreeing to the [AI AND MACHINE LEARNING LICENSE](DATA_LICENSE).
 
-* [Ladder 2017 Season 1](http://www.github.com)
-* [Ladder 2017 Season 2](http://www.github.com)
-* [Ladder 2017 Season 3](http://www.github.com)
-* [Melee](http://www.github.com)
+* [Ladder 2017 Season 1](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season1.zip)
+* [Ladder 2017 Season 2](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season2.zip)
+* [Ladder 2017 Season 3](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season3.zip)
+* [Melee](http://blzdistsc2-a.akamaihd.net/MapPacks/Melee.zip)
 
 ## Replay Packs
 
