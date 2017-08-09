@@ -45,9 +45,9 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 To access these additional files, users must agree to the [AI and Machine Learning License](DATA_LICENSE).
 
-You will be prompted for a password when extracting these files.
+The files are password protected with the password 'iagreetotheeula'.
 
-**Enter the password "iagreetotheeula" to agree to the license and decrypt the files.**
+**By typing in the password ‘iagreetotheeula’ you agree to be bound by the terms of the [AI and Machine Learning License](DATA_LICENSE)**
 
 ## Linux Packages
 
