@@ -2,7 +2,7 @@
 
 ## Installation
 1. [Download](../README.md#linux-packages) a data package for the desired game version.
-2. Unzip the package in the desired directory.
+2. Unzip the package directly into your home folder.
 3. [Download](../README.md#downloads) and [install](../README.md#installing-map-and-replay-packs) the desired map and replay packs.
 
 ## Command line options
