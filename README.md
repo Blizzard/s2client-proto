@@ -24,13 +24,13 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 * **StarCraft II Linux Packages**
     * Self contained headless linux StarCraft II builds.
     * [Documentation](docs/linux.md)
-    * [Download](#linux-packages)
+    * [Download](#downloads)
 * **Maps**
     * Maps from the 1v1 ladder and other custom maps.
-    * [Download](#map-packs)
+    * [Download](#downloads)
 * **Replays**
     * Replay packs of 1v1 ladder games.
-    * [Download](#replay-packs)
+    * [Download](#downloads)
 
 ## Community
 
