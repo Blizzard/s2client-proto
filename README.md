@@ -62,7 +62,7 @@ The files are password protected with the password 'iagreetotheeula'.
 
 ## Replay Packs
 
-* [3.16.1 - Pack 1](http://blzdistsc2-a.akamaihd.net/ReplayPacks/3.16.1-Pack_1.zip)
+* [3.16.1 - Pack 1](http://blzdistsc2-a.akamaihd.net/ReplayPacks/3.16.1-Pack_1-fix.zip)
 
 # Installing Map and Replay Packs
 
