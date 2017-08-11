@@ -160,7 +160,7 @@ enum Status {
 message RequestCreateGame {
   oneof Map {
     LocalMap local_map = 1;                         // Local .SC2Map file
-    string battlenet_map_name = 2;                  // Map published the BattleNet
+    string battlenet_map_name = 2;                  // Map published on BattleNet
   }
 
   repeated PlayerSetup player_setup = 3;
