@@ -10,7 +10,7 @@ The address/port of the websocket server is specified on the command line:
 The SC2API can be accessed by connecting to the websocket URL:
 > /sc2api
 
-The protocol for the connection is defined in protobuf. [The protocol definition can be found here.](sc2api.proto)
+The protocol for the connection is defined in protobuf. [The protocol definition can be found here.](../s2clientprotocol/sc2api.proto)
 
 All communication over the connection is based around **Request** and **Response** messages. Requests are used for controlling the state of the application, retrieving data and controlling gameplay. 
 
