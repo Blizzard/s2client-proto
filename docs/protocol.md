@@ -81,7 +81,7 @@ When in realtime mode, the Step transition in the above diagram will occur autom
 ## Play two bots against each other
 1. Launch two instances of the SC2 client.
 2. Choose one of the instances to act as the game host.
-3. Send **RequestCreateGame** to the host a valid multi player map.
+3. Send **RequestCreateGame** to the host with a valid multi player map.
 4. Send **RequestJoinGame** to both of the clients with the desired player config.
     1. Clients will synchronize between themselves. 
     2. They will send **ResponseJoinGame** when both clients are ready to start playing.
