@@ -47,7 +47,7 @@ To access the linux packages, map packs and replay packs, you must agree to the 
 
 The files are password protected with the password 'iagreetotheeula'.
 
-**By typing in the password ‘iagreetotheeula’ you agree to be bound by the terms of the [AI and Machine Learning License](DATA_LICENSE)**
+**By typing in the password ‘iagreetotheeula’ you agree to be bound by the terms of the [AI and Machine Learning License](http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html)**
 
 ## Linux Packages
 
