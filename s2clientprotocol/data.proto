@@ -85,6 +85,10 @@ message UnitTypeData {
 message UpgradeData {
   optional uint32 upgrade_id = 1;       // Stable ID.
   optional string name = 2;
+  optional uint32 mineral_cost = 3;
+  optional uint32 vespene_cost = 4;
+  optional float research_time = 5;
+  optional uint32 ability_id = 6;
 }
 
 message BuffData {
