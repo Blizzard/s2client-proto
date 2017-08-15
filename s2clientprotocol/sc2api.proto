@@ -386,6 +386,7 @@ message RequestReplayInfo {
     string replay_path = 1;         // Limitation: might fail if the replay file is currently loaded.
     bytes replay_data = 2;
   }
+  optional bool download_data = 3;  // Ensure the data and binary are downloaded if this is an old version replay.
 }
 
 message PlayerInfoExtra {
@@ -411,6 +412,7 @@ message ResponseReplayInfo {
     InvalidReplayPath = 2;
     InvalidReplayData = 3;
     ParsingError = 4;
+    DownloadError = 5;
   }
   optional Error error = 9;
   optional string error_details = 10;
