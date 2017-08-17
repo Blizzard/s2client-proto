@@ -160,7 +160,7 @@ enum Status {
 message RequestCreateGame {
   oneof Map {
     LocalMap local_map = 1;                         // Local .SC2Map file
-    string battlenet_map_name = 2;                  // Map published to BattleNet
+    string battlenet_map_name = 2;                  // Map published the BattleNet
   }
 
   repeated PlayerSetup player_setup = 3;
@@ -169,8 +169,6 @@ message RequestCreateGame {
 
   optional uint32 random_seed = 5;                  // Sets the pseudo-random seed for the game.
   optional bool realtime = 6;                       // If set, the game plays in real time.
-                                                    // Note: Valid currently only for single player.
-                                                    // TODO: Implement for multiplayer.
 }
 
 message LocalMap {
@@ -325,6 +323,7 @@ message ResponseGameInfo {
 
 //-----------------------------------------------------------------------------
 message RequestObservation {
+  optional bool disable_fog = 1;
 }
 
 message ResponseObservation {
@@ -467,13 +466,6 @@ message ResponseDebug {
 //
 // Game Setup
 //
-
-enum Race {
-  Terran = 1;
-  Zerg = 2;
-  Protoss = 3;
-  Random = 4;
-}
 
 enum Difficulty {
   VeryEasy = 1;
