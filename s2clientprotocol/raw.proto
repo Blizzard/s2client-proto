@@ -3,7 +3,7 @@ syntax = "proto2";
 
 package SC2APIProtocol;
 
-import "common.proto";
+import "s2clientprotocol/common.proto";
 
 //
 // Start

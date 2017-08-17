@@ -51,7 +51,7 @@ class BuildPy(build_py):
 
   def run(self):
     for proto_file in proto_files(PROTO_DIR):
-      compile_proto(proto_file, python_out=PROTO_DIR, proto_path=PROTO_DIR)
+      compile_proto(proto_file, python_out=SETUP_DIR, proto_path=SETUP_DIR)
     with open(os.path.join(PROTO_DIR, '__init__.py'), 'a') as f:
       pass
     build_py.run(self)

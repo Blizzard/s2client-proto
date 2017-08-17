@@ -3,8 +3,8 @@ syntax = "proto2";
 
 package SC2APIProtocol;
 
-import "common.proto";
-import "error.proto";
+import "s2clientprotocol/common.proto";
+import "s2clientprotocol/error.proto";
 
 message RequestQuery {
   repeated RequestQueryPathing pathing = 1;

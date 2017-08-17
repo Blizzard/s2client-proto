@@ -3,15 +3,15 @@ syntax = "proto2";
 
 package SC2APIProtocol;
 
-import "common.proto";
-import "data.proto";
-import "debug.proto";
-import "error.proto";
-import "query.proto";
-import "raw.proto";
-import "score.proto";
-import "spatial.proto";
-import "ui.proto";
+import "s2clientprotocol/common.proto";
+import "s2clientprotocol/data.proto";
+import "s2clientprotocol/debug.proto";
+import "s2clientprotocol/error.proto";
+import "s2clientprotocol/query.proto";
+import "s2clientprotocol/raw.proto";
+import "s2clientprotocol/score.proto";
+import "s2clientprotocol/spatial.proto";
+import "s2clientprotocol/ui.proto";
 
 //
 // Notes:
