@@ -3,6 +3,8 @@ syntax = "proto2";
 
 package SC2APIProtocol;
 
+import "common.proto";
+
 // May not relevant: queueable (everything is queueable).
 // May not be important: AbilSetId - marine stim, marauder stim.
 // Stuff omitted: transient.
@@ -74,6 +76,11 @@ message UnitTypeData {
   optional uint32 cargo_size = 4;                                 // Number of cargo slots it occupies in transports.
   optional uint32 mineral_cost = 12;
   optional uint32 vespene_cost = 13;
+  optional float food_required = 14;
+  optional float food_provided = 18;
+  optional uint32 ability_id = 15;                                // This is the ability the builds the unit
+  optional Race race = 16;
+  optional float build_time = 17;
 
   // Values include changes from upgrades
   repeated Attribute attributes = 8;

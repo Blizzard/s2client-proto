@@ -47,3 +47,13 @@ message Size2DI {
   optional int32 x = 1;
   optional int32 y = 2;
 }
+
+enum Race {
+  NoRace = 0;
+  Terran = 1;
+  Zerg = 2;
+  Protoss = 3;
+  Random = 4;
+}
+
+
