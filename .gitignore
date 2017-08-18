@@ -1,0 +1,4 @@
+*_pb2.py
+*.pyc
+build/
+s2clientprotocol/__init__.py
