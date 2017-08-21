@@ -3,7 +3,7 @@ syntax = "proto2";
 
 package SC2APIProtocol;
 
-import "common.proto";
+import "s2clientprotocol/common.proto";
 
 // May not relevant: queueable (everything is queueable).
 // May not be important: AbilSetId - marine stim, marauder stim.
@@ -83,6 +83,12 @@ message UnitTypeData {
   optional float build_time = 17;
   optional bool has_vespene = 19;
   optional bool has_minerals = 20;
+
+  repeated uint32 tech_alias = 21;                                // Units this is equivalent to in terms of satisfying tech requirement.
+  optional uint32 unit_alias = 22;                                // Units that are morphed variants of the same unit.
+
+  optional uint32 tech_requirement = 23;                          // Structure required to build this unit. (Or any with the same tech_alias)
+  optional bool require_attached = 24;                            // Whether tech_requirement is an add-on.
 
   // Values include changes from upgrades
   repeated Attribute attributes = 8;
