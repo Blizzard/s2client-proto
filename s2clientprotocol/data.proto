@@ -84,6 +84,12 @@ message UnitTypeData {
   optional bool has_vespene = 19;
   optional bool has_minerals = 20;
 
+  repeated uint32 tech_alias = 21;                                // Units this is equivalent to in terms of satisfying tech requirement.
+  optional uint32 unit_alias = 22;                                // Units that are morphed variants of the same unit.
+
+  optional uint32 tech_requirement = 23;                          // Structure required to build this unit. (Or any with the same tech_alias)
+  optional bool require_attached = 24;                            // Whether tech_requirement is an add-on.
+
   // Values include changes from upgrades
   repeated Attribute attributes = 8;
   optional float movement_speed = 9;
