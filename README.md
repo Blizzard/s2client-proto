@@ -43,11 +43,11 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 
 # Downloads
 
-To access these additional files, users must agree to the [AI and Machine Learning License](DATA_LICENSE).
+To access the linux packages, map packs and replay packs, you must agree to the [AI and Machine Learning License](http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html)
 
 The files are password protected with the password 'iagreetotheeula'.
 
-**By typing in the password ‘iagreetotheeula’ you agree to be bound by the terms of the [AI and Machine Learning License](DATA_LICENSE)**
+**By typing in the password ‘iagreetotheeula’ you agree to be bound by the terms of the [AI and Machine Learning License](http://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html)**
 
 ## Linux Packages
 
