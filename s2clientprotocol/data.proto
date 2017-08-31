@@ -3,6 +3,8 @@ syntax = "proto2";
 
 package SC2APIProtocol;
 
+import "s2clientprotocol/common.proto";
+
 // May not relevant: queueable (everything is queueable).
 // May not be important: AbilSetId - marine stim, marauder stim.
 // Stuff omitted: transient.
@@ -74,6 +76,19 @@ message UnitTypeData {
   optional uint32 cargo_size = 4;                                 // Number of cargo slots it occupies in transports.
   optional uint32 mineral_cost = 12;
   optional uint32 vespene_cost = 13;
+  optional float food_required = 14;
+  optional float food_provided = 18;
+  optional uint32 ability_id = 15;                                // This is the ability the builds the unit
+  optional Race race = 16;
+  optional float build_time = 17;
+  optional bool has_vespene = 19;
+  optional bool has_minerals = 20;
+
+  repeated uint32 tech_alias = 21;                                // Units this is equivalent to in terms of satisfying tech requirement.
+  optional uint32 unit_alias = 22;                                // Units that are morphed variants of the same unit.
+
+  optional uint32 tech_requirement = 23;                          // Structure required to build this unit. (Or any with the same tech_alias)
+  optional bool require_attached = 24;                            // Whether tech_requirement is an add-on.
 
   // Values include changes from upgrades
   repeated Attribute attributes = 8;
@@ -85,6 +100,10 @@ message UnitTypeData {
 message UpgradeData {
   optional uint32 upgrade_id = 1;       // Stable ID.
   optional string name = 2;
+  optional uint32 mineral_cost = 3;
+  optional uint32 vespene_cost = 4;
+  optional float research_time = 5;
+  optional uint32 ability_id = 6;
 }
 
 message BuffData {

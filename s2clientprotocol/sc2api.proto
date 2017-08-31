@@ -169,8 +169,6 @@ message RequestCreateGame {
 
   optional uint32 random_seed = 5;                  // Sets the pseudo-random seed for the game.
   optional bool realtime = 6;                       // If set, the game plays in real time.
-                                                    // Note: Valid currently only for single player.
-                                                    // TODO: Implement for multiplayer.
 }
 
 message LocalMap {
@@ -325,6 +323,7 @@ message ResponseGameInfo {
 
 //-----------------------------------------------------------------------------
 message RequestObservation {
+  optional bool disable_fog = 1;
 }
 
 message ResponseObservation {
@@ -386,6 +385,7 @@ message RequestReplayInfo {
     string replay_path = 1;         // Limitation: might fail if the replay file is currently loaded.
     bytes replay_data = 2;
   }
+  optional bool download_data = 3;  // Ensure the data and binary are downloaded if this is an old version replay.
 }
 
 message PlayerInfoExtra {
@@ -411,6 +411,7 @@ message ResponseReplayInfo {
     InvalidReplayPath = 2;
     InvalidReplayData = 3;
     ParsingError = 4;
+    DownloadError = 5;
   }
   optional Error error = 9;
   optional string error_details = 10;
@@ -465,13 +466,6 @@ message ResponseDebug {
 //
 // Game Setup
 //
-
-enum Race {
-  Terran = 1;
-  Zerg = 2;
-  Protoss = 3;
-  Random = 4;
-}
 
 enum Difficulty {
   VeryEasy = 1;

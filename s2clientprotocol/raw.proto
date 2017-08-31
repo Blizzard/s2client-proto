@@ -100,6 +100,7 @@ message Unit {
   optional bool is_selected = 11;
   optional bool is_on_screen = 12;          // Visible and within the camera frustrum.
   optional bool is_blip = 13;               // Detected by sensor tower
+  optional bool is_powered = 35;
 
   // Not populated for snapshots
   optional float health = 14;
