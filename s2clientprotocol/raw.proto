@@ -106,7 +106,9 @@ message Unit {
   optional float health = 14;
   optional float health_max = 15;
   optional float shield = 16;
+  optional float shield_max = 36;
   optional float energy = 17;
+  optional float energy_max = 37;
   optional int32 mineral_contents = 18;
   optional int32 vespene_contents = 19;
   optional bool is_flying = 20;
