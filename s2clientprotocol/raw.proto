@@ -75,7 +75,9 @@ message PassengerUnit {
   optional float health = 2;
   optional float health_max = 3;
   optional float shield = 4;
+  optional float shield_max = 7;
   optional float energy = 5;
+  optional float energy_max = 8;
   optional uint32 unit_type = 6;
 }
 
