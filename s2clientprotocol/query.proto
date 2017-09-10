@@ -1,5 +1,5 @@
 
-syntax = "proto2";
+syntax = "proto3";
 
 package SC2APIProtocol;
 
@@ -10,7 +10,7 @@ message RequestQuery {
   repeated RequestQueryPathing pathing = 1;
   repeated RequestQueryAvailableAbilities abilities = 2;
   repeated RequestQueryBuildingPlacement placements = 3;
-  optional bool ignore_resource_requirements = 4;   // Ignores requirements like food, minerals and so on.
+  bool ignore_resource_requirements = 4;   // Ignores requirements like food, minerals and so on.
 }
 
 message ResponseQuery {
@@ -25,31 +25,31 @@ message RequestQueryPathing {
     Point2D start_pos = 1;
     uint64 unit_tag = 2;
   }
-  optional Point2D end_pos = 3;
+  Point2D end_pos = 3;
 }
 
 message ResponseQueryPathing {
-  optional float distance = 1;                      // 0 if no path exists
+  float distance = 1;                      // 0 if no path exists
 }
 
 //--------------------------------------------------------------------------------------------------
 message RequestQueryAvailableAbilities {
-  optional uint64 unit_tag = 1;
+  uint64 unit_tag = 1;
 }
 
 message ResponseQueryAvailableAbilities {
   repeated AvailableAbility abilities = 1;
-  optional uint64 unit_tag = 2;
-  optional uint32 unit_type_id = 3;
+  uint64 unit_tag = 2;
+  uint32 unit_type_id = 3;
 }
 
 //--------------------------------------------------------------------------------------------------
 message RequestQueryBuildingPlacement {
-  optional int32 ability_id = 1;
-  optional Point2D target_pos = 2;
-  optional uint64 placing_unit_tag = 3;             // Not required
+  int32 ability_id = 1;
+  Point2D target_pos = 2;
+  uint64 placing_unit_tag = 3;             // Not required
 }
 
 message ResponseQueryBuildingPlacement  {
-  optional ActionResult result = 1;
+  ActionResult result = 1;
 }

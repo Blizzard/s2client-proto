@@ -1,5 +1,5 @@
 
-syntax = "proto2";
+syntax = "proto3";
 
 package SC2APIProtocol;
 
@@ -10,38 +10,38 @@ import "s2clientprotocol/common.proto";
 //
 
 message ObservationFeatureLayer {
-  optional FeatureLayers renders = 1;
-  optional FeatureLayersMinimap minimap_renders = 2;
+  FeatureLayers renders = 1;
+  FeatureLayersMinimap minimap_renders = 2;
 }
 
 message FeatureLayers {
-  optional ImageData height_map = 1;                // uint8. Terrain height. World space units of [-200, 200] encoded into [0, 255].
-  optional ImageData visibility_map = 2;            // uint8. 0=Hidden, 1=Fogged, 2=Visible, 3=FullHidden
-  optional ImageData creep = 3;                     // 1-bit. Zerg creep.
-  optional ImageData power = 4;                     // 1-bit. Protoss power.
-  optional ImageData player_id = 5;                 // uint8. Participants: [1, 15] Neutral: 16
-  optional ImageData unit_type = 6;                 // int32. Unique identifier for type of unit.
-  optional ImageData selected = 7;                  // 1-bit. Selected units.
-  optional ImageData unit_hit_points = 8;           // int32.
-  optional ImageData unit_hit_points_ratio = 17;    // uint8. Ratio of current health to max health. [0%, 100%] encoded into [0, 255].
-  optional ImageData unit_energy = 9;               // int32.
-  optional ImageData unit_shields = 10;             // int32.
-  optional ImageData player_relative = 11;          // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
-  optional ImageData unit_density_aa = 14;          // uint8. Density of units overlapping a pixel, anti-aliased. [0.0, 16.0f] encoded into [0, 255].
-  optional ImageData unit_density = 15;             // uint8. Count of units overlapping a pixel.
+  ImageData height_map = 1;                // uint8. Terrain height. World space units of [-200, 200] encoded into [0, 255].
+  ImageData visibility_map = 2;            // uint8. 0=Hidden, 1=Fogged, 2=Visible, 3=FullHidden
+  ImageData creep = 3;                     // 1-bit. Zerg creep.
+  ImageData power = 4;                     // 1-bit. Protoss power.
+  ImageData player_id = 5;                 // uint8. Participants: [1, 15] Neutral: 16
+  ImageData unit_type = 6;                 // int32. Unique identifier for type of unit.
+  ImageData selected = 7;                  // 1-bit. Selected units.
+  ImageData unit_hit_points = 8;           // int32.
+  ImageData unit_hit_points_ratio = 17;    // uint8. Ratio of current health to max health. [0%, 100%] encoded into [0, 255].
+  ImageData unit_energy = 9;               // int32.
+  ImageData unit_shields = 10;             // int32.
+  ImageData player_relative = 11;          // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
+  ImageData unit_density_aa = 14;          // uint8. Density of units overlapping a pixel, anti-aliased. [0.0, 16.0f] encoded into [0, 255].
+  ImageData unit_density = 15;             // uint8. Count of units overlapping a pixel.
 }
 
 message FeatureLayersMinimap {
-  optional ImageData height_map = 1;                // uint8. Terrain height. World space units of [-200, 200] encoded into [0, 255].
-  optional ImageData visibility_map = 2;            // uint8. 0=Hidden, 1=Fogged, 2=Visible, 3=FullHidden
-  optional ImageData creep = 3;                     // 1-bit. Zerg creep.
-  optional ImageData camera = 4;                    // 1-bit. Area covered by the camera.
-  optional ImageData player_id = 5;                 // uint8. Participants: [1, 15] Neutral: 16
-  optional ImageData player_relative = 6;           // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
-  optional ImageData selected = 7;                  // 1-bit. Selected units.
+  ImageData height_map = 1;                // uint8. Terrain height. World space units of [-200, 200] encoded into [0, 255].
+  ImageData visibility_map = 2;            // uint8. 0=Hidden, 1=Fogged, 2=Visible, 3=FullHidden
+  ImageData creep = 3;                     // 1-bit. Zerg creep.
+  ImageData camera = 4;                    // 1-bit. Area covered by the camera.
+  ImageData player_id = 5;                 // uint8. Participants: [1, 15] Neutral: 16
+  ImageData player_relative = 6;           // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
+  ImageData selected = 7;                  // 1-bit. Selected units.
 
   // Cheat layers. Only populated in replays.
-  optional ImageData unit_type = 8;                 // int32. Unique identifier for type of unit.
+  ImageData unit_type = 8;                 // int32. Unique identifier for type of unit.
 }
 
 
@@ -50,8 +50,8 @@ message FeatureLayersMinimap {
 //
 
 message ObservationRender {
-  optional ImageData map = 1;
-  optional ImageData minimap = 2;
+  ImageData map = 1;
+  ImageData minimap = 2;
 }
 
 
@@ -69,31 +69,32 @@ message ActionSpatial {
 }
 
 message ActionSpatialUnitCommand {
-  optional int32 ability_id = 1;
+  int32 ability_id = 1;
   oneof target {
     PointI target_screen_coord = 2;
     PointI target_minimap_coord = 3;
   }
 
-  optional bool queue_command = 4;          // Equivalent to shift+command.
+  bool queue_command = 4;          // Equivalent to shift+command.
 }
 
 message ActionSpatialCameraMove {
-  optional PointI center_minimap = 1;       // Simulates a click on the minimap to move the camera.
+  PointI center_minimap = 1;       // Simulates a click on the minimap to move the camera.
 }
 
 message ActionSpatialUnitSelectionPoint {
-  optional PointI selection_screen_coord = 1;
+  PointI selection_screen_coord = 1;
   enum Type {
+    Type_UNSET = 0;
     Select = 1;         // Equivalent to normal click. Changes selection to unit.
     Toggle = 2;         // Equivalent to shift+click. Toggle selection of unit.
     AllType = 3;        // Equivalent to control+click. Selects all units of a given type.
     AddAllType = 4;     // Equivalent to shift+control+click. Selects all units of a given type.
   }
-  optional Type type = 2;
+  Type type = 2;
 }
 
 message ActionSpatialUnitSelectionRect {
   repeated RectangleI selection_screen_coord = 1;   // Eventually this should not be an array, but a single field (multiple would be cheating).
-  optional bool selection_add = 2;                  // Equivalent to shift+drag. Adds units to selection.
+  bool selection_add = 2;                  // Equivalent to shift+drag. Adds units to selection.
 }

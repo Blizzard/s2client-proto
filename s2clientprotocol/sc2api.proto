@@ -1,5 +1,5 @@
 
-syntax = "proto2";
+syntax = "proto3";
 
 package SC2APIProtocol;
 
@@ -141,10 +141,11 @@ message Response {
     ResponseDebug debug = 20;
   }
   repeated string error = 98;                   // If command is missing, this will contain the error. Otherwise this will contain any warnings.
-  optional Status status = 99;                  // Should be sent back with all responses.
+  Status status = 99;                  // Should be sent back with all responses.
 }
 
 enum Status {
+  Status_UNSET = 0;
   launched = 1;                                 // Game has been launch and is not yet doing anything.
   init_game = 2;                                // Create game has been called, and the host is awaiting players.
   in_game = 3;                                  // In a single or multiplayer game.
@@ -165,22 +166,23 @@ message RequestCreateGame {
 
   repeated PlayerSetup player_setup = 3;
 
-  optional bool disable_fog = 4;
+  bool disable_fog = 4;
 
-  optional uint32 random_seed = 5;                  // Sets the pseudo-random seed for the game.
-  optional bool realtime = 6;                       // If set, the game plays in real time.
+  uint32 random_seed = 5;                  // Sets the pseudo-random seed for the game.
+  bool realtime = 6;                       // If set, the game plays in real time.
 }
 
 message LocalMap {
   // A map can be specified either by a file path or the data of the .SC2Map file.
   // If you provide both, it will play the game using map_data and store map_path
   // into the replay. (260 character max)
-  optional string map_path = 1;
-  optional bytes map_data = 7;
+  string map_path = 1;
+  bytes map_data = 7;
 }
 
 message ResponseCreateGame {
   enum Error {
+    Error_UNSET = 0;
     MissingMap = 1;
     InvalidMapPath = 2;
     InvalidMapData = 3;
@@ -190,8 +192,8 @@ message ResponseCreateGame {
     InvalidPlayerSetup = 7;
     MultiplayerUnsupported = 8;                     // Multiplayer is not supported in the current build.
   }
-  optional Error error = 1;
-  optional string error_details = 2;
+  Error error = 1;
+  string error_details = 2;
 }
 
 //-----------------------------------------------------------------------------
@@ -203,22 +205,23 @@ message RequestJoinGame {
     uint32 observed_player_id = 2;          // Join as observer
   }
 
-  optional InterfaceOptions options = 3;    // This is limited to what is specified in RequestCreateGame, but you can request less information if you want.
-  optional PortSet server_ports = 4;        // Do not set in the single-player case. This is the port a server will use.
+  InterfaceOptions options = 3;    // This is limited to what is specified in RequestCreateGame, but you can request less information if you want.
+  PortSet server_ports = 4;        // Do not set in the single-player case. This is the port a server will use.
   repeated PortSet client_ports = 5;        // Do not set in the single-player case. These are the ports clients will use to initialize communication.
                                             // Currently only a singe client is supported.
-  optional int32 shared_port = 6;
+  int32 shared_port = 6;
 }
 
 message PortSet {
-  optional int32 game_port = 1;             // Game right now needs two internal ports to establish a multiplay game on the local host.
-  optional int32 base_port = 2;
+  int32 game_port = 1;             // Game right now needs two internal ports to establish a multiplay game on the local host.
+  int32 base_port = 2;
 }
 
 message ResponseJoinGame {
-  optional uint32 player_id = 1;
+  uint32 player_id = 1;
 
   enum Error {
+    Error_UNSET = 0;
     MissingParticipation = 1;
     InvalidObservedPlayerId = 2;
     MissingOptions = 3;
@@ -235,8 +238,8 @@ message ResponseJoinGame {
     NetworkError = 12;
     OtherError = 13;
   }
-  optional Error error = 2;
-  optional string error_details = 3;
+  Error error = 2;
+  string error_details = 3;
 }
 
 //-----------------------------------------------------------------------------
@@ -245,10 +248,11 @@ message RequestRestartGame {
 
 message ResponseRestartGame {
   enum Error {
+    Error_UNSET = 0;
     LaunchError = 1;
   }
-  optional Error error = 1;
-  optional string error_details = 2;
+  Error error = 1;
+  string error_details = 2;
 }
 
 //-----------------------------------------------------------------------------
@@ -257,15 +261,16 @@ message RequestStartReplay {
     string replay_path = 1;
     bytes replay_data = 5;
   }
-  optional bytes map_data = 6;                      // Overrides the map path stored in the replay.
-  optional int32 observed_player_id = 2;
-  optional InterfaceOptions options = 3;
+  bytes map_data = 6;                      // Overrides the map path stored in the replay.
+  int32 observed_player_id = 2;
+  InterfaceOptions options = 3;
 
-  optional bool disable_fog = 4;
+  bool disable_fog = 4;
 }
 
 message ResponseStartReplay {
   enum Error {
+    Error_UNSET = 0;
     MissingReplay = 1;
     InvalidReplayPath = 2;
     InvalidReplayData = 3;
@@ -274,8 +279,8 @@ message ResponseStartReplay {
     MissingOptions = 6;
     LaunchError = 7;
   }
-  optional Error error = 1;
-  optional string error_details = 2;
+  Error error = 1;
+  string error_details = 2;
 }
 
 //-----------------------------------------------------------------------------
@@ -313,30 +318,30 @@ message RequestGameInfo {
 }
 
 message ResponseGameInfo {
-  optional string map_name = 1;
+  string map_name = 1;
   repeated string mod_names = 6;
-  optional string local_map_path = 2;
+  string local_map_path = 2;
   repeated PlayerInfo player_info = 3;
-  optional StartRaw start_raw = 4;               // Populated if Raw interface is enabled.
-  optional InterfaceOptions options = 5;
+  StartRaw start_raw = 4;               // Populated if Raw interface is enabled.
+  InterfaceOptions options = 5;
 }
 
 //-----------------------------------------------------------------------------
 message RequestObservation {
-  optional bool disable_fog = 1;
+  bool disable_fog = 1;
 }
 
 message ResponseObservation {
   repeated Action actions = 1;                  // Actions this player did since the last Observation.
   repeated ActionError action_errors = 2;       // Equivalent of UI "red text" errors.
-  optional Observation observation = 3;
+  Observation observation = 3;
   repeated PlayerResult player_result = 4;      // Only populated if the game ended during this step.
   repeated ChatReceived chat = 5;
 }
 
 message ChatReceived {
-  optional int32 player_id = 1;
-  optional string message = 2;
+  int32 player_id = 1;
+  string message = 2;
 }
 
 //-----------------------------------------------------------------------------
@@ -350,7 +355,7 @@ message ResponseAction {
 
 //-----------------------------------------------------------------------------
 message RequestStep {
-  optional uint32 count = 1;                    // Number of game loops to simulate for the next frame.
+  uint32 count = 1;                    // Number of game loops to simulate for the next frame.
 }
 
 message ResponseStep {
@@ -358,10 +363,10 @@ message ResponseStep {
 
 //-----------------------------------------------------------------------------
 message RequestData {
-  optional bool ability_id = 1;
-  optional bool unit_type_id = 2;
-  optional bool upgrade_id = 3;
-  optional bool buff_id = 4;
+  bool ability_id = 1;
+  bool unit_type_id = 2;
+  bool upgrade_id = 3;
+  bool buff_id = 4;
 }
 
 message ResponseData {
@@ -376,7 +381,7 @@ message RequestSaveReplay {
 }
 
 message ResponseSaveReplay {
-  optional bytes data = 1;
+  bytes data = 1;
 }
 
 //-----------------------------------------------------------------------------
@@ -385,36 +390,37 @@ message RequestReplayInfo {
     string replay_path = 1;         // Limitation: might fail if the replay file is currently loaded.
     bytes replay_data = 2;
   }
-  optional bool download_data = 3;  // Ensure the data and binary are downloaded if this is an old version replay.
+  bool download_data = 3;  // Ensure the data and binary are downloaded if this is an old version replay.
 }
 
 message PlayerInfoExtra {
-  optional PlayerInfo player_info = 1;
-  optional PlayerResult player_result = 2;
-  optional int32 player_mmr = 3;
-  optional int32 player_apm = 4;
+  PlayerInfo player_info = 1;
+  PlayerResult player_result = 2;
+  int32 player_mmr = 3;
+  int32 player_apm = 4;
 }
 
 message ResponseReplayInfo {
-  optional string map_name = 1;
-  optional string local_map_path = 2;
+  string map_name = 1;
+  string local_map_path = 2;
   repeated PlayerInfoExtra player_info = 3;
-  optional uint32 game_duration_loops = 4;
-  optional float game_duration_seconds = 5;
-  optional string game_version = 6;
-  optional string data_version = 11;
-  optional uint32 data_build = 7;
-  optional uint32 base_build = 8;
+  uint32 game_duration_loops = 4;
+  float game_duration_seconds = 5;
+  string game_version = 6;
+  string data_version = 11;
+  uint32 data_build = 7;
+  uint32 base_build = 8;
 
   enum Error {
+    Error_UNSET = 0;
     MissingReplay = 1;
     InvalidReplayPath = 2;
     InvalidReplayData = 3;
     ParsingError = 4;
     DownloadError = 5;
   }
-  optional Error error = 9;
-  optional string error_details = 10;
+  Error error = 9;
+  string error_details = 10;
 }
 
 //-----------------------------------------------------------------------------
@@ -432,15 +438,16 @@ message ResponseAvailableMaps {
 //-----------------------------------------------------------------------------
 // Copies map data into the path specified.
 message RequestSaveMap {
-  optional string map_path = 1;                 // Path the game process will write to, relative to the temp directory. (260 character max)
-  optional bytes map_data = 2;                  // Binary map data of a .SC2Map.
+  string map_path = 1;                 // Path the game process will write to, relative to the temp directory. (260 character max)
+  bytes map_data = 2;                  // Binary map data of a .SC2Map.
 }
 
 message ResponseSaveMap {
   enum Error {
+    Error_UNSET = 0;
     InvalidMapData = 1;
   }
-  optional Error error = 1;
+  Error error = 1;
 }
 
 //-----------------------------------------------------------------------------
@@ -448,10 +455,10 @@ message RequestPing {
 }
 
 message ResponsePing {
-  optional string game_version = 1;
-  optional string data_version = 2;
-  optional uint32 data_build = 3;
-  optional uint32 base_build = 4;
+  string game_version = 1;
+  string data_version = 2;
+  uint32 data_build = 3;
+  uint32 base_build = 4;
 }
 
 //-----------------------------------------------------------------------------
@@ -468,6 +475,7 @@ message ResponseDebug {
 //
 
 enum Difficulty {
+  Difficulty_UNSET = 0;
   VeryEasy = 1;
   Easy = 2;
   Medium = 3;
@@ -481,41 +489,42 @@ enum Difficulty {
 }
 
 enum PlayerType {
+  PlayerType_UNSET = 0;
   Participant = 1;
   Computer = 2;
   Observer = 3;
 }
 
 message PlayerSetup {
-  optional PlayerType type = 1;
+  PlayerType type = 1;
 
   // Only used for a computer player.
-  optional Race race = 2;
-  optional Difficulty difficulty = 3;
+  Race race = 2;
+  Difficulty difficulty = 3;
 }
 
 message SpatialCameraSetup {
-  optional float width = 1;
-  optional Size2DI resolution = 2;
-  optional Size2DI minimap_resolution = 3;
+  float width = 1;
+  Size2DI resolution = 2;
+  Size2DI minimap_resolution = 3;
 }
 
 message InterfaceOptions {
   // Interface options
-  optional bool raw = 1;
-  optional bool score = 2;
-  optional SpatialCameraSetup feature_layer = 3;    // Omit to disable.
-  optional SpatialCameraSetup render = 4;           // Not implemented.
+  bool raw = 1;
+  bool score = 2;
+  SpatialCameraSetup feature_layer = 3;    // Omit to disable.
+  SpatialCameraSetup render = 4;           // Not implemented.
 }
 
 message PlayerInfo {
   // Identifier that will be used to reference this player.
   // SC2 will always assign playerIds starting from 1 in standard Melee maps. This may not be true in custom maps.
-  optional uint32 player_id = 1;
-  optional PlayerType type = 2;
-  optional Race race_requested = 3;
-  optional Race race_actual = 4; // Only populated for your player or when watching replay
-  optional Difficulty difficulty = 5;
+  uint32 player_id = 1;
+  PlayerType type = 2;
+  Race race_requested = 3;
+  Race race_actual = 4; // Only populated for your player or when watching replay
+  Difficulty difficulty = 5;
 }
 
 
@@ -524,61 +533,64 @@ message PlayerInfo {
 //
 
 message PlayerCommon {
-  optional uint32 player_id = 1;
-  optional uint32 minerals = 2;
-  optional uint32 vespene = 3;
-  optional uint32 food_cap = 4;
-  optional uint32 food_used = 5;
-  optional uint32 food_army = 6;
-  optional uint32 food_workers = 7;
-  optional uint32 idle_worker_count = 8;
-  optional uint32 army_count = 9;
-  optional uint32 warp_gate_count = 10;
-  optional uint32 larva_count = 11;
+  uint32 player_id = 1;
+  uint32 minerals = 2;
+  uint32 vespene = 3;
+  uint32 food_cap = 4;
+  uint32 food_used = 5;
+  uint32 food_army = 6;
+  uint32 food_workers = 7;
+  uint32 idle_worker_count = 8;
+  uint32 army_count = 9;
+  uint32 warp_gate_count = 10;
+  uint32 larva_count = 11;
 }
 
 message Observation {
-  optional uint32 game_loop = 9;
-  optional PlayerCommon player_common = 1;
+  uint32 game_loop = 9;
+  PlayerCommon player_common = 1;
   repeated Alert alerts = 10;
   repeated AvailableAbility abilities = 3;                  // Abilities available in the selection. Enabled if in this list, disabled otherwise.
-  optional Score score = 4;
+  Score score = 4;
 
-  optional ObservationRaw raw_data = 5;                     // Populated if Raw interface is enabled.
-  optional ObservationFeatureLayer feature_layer_data = 6;  // Populated if Feature Layer interface is enabled.
-  optional ObservationRender render_data = 7;               // Populated if Render interface is enabled.
-  optional ObservationUI ui_data = 8;                       // Populated if Feature Layer or Render interface is enabled.
+  ObservationRaw raw_data = 5;                     // Populated if Raw interface is enabled.
+  ObservationFeatureLayer feature_layer_data = 6;  // Populated if Feature Layer interface is enabled.
+  ObservationRender render_data = 7;               // Populated if Render interface is enabled.
+  ObservationUI ui_data = 8;                       // Populated if Feature Layer or Render interface is enabled.
 }
 
 message Action {
-  optional ActionRaw action_raw = 1;                        // Populated if Raw interface is enabled.
-  optional ActionSpatial action_feature_layer = 2;          // Populated if Feature Layer interface is enabled.
-  optional ActionSpatial action_render = 3;                 // Not implemented. Populated if Render interface is enabled.
-  optional ActionUI action_ui = 4;                          // Populated if Feature Layer or Render interface is enabled.
+  ActionRaw action_raw = 1;                        // Populated if Raw interface is enabled.
+  ActionSpatial action_feature_layer = 2;          // Populated if Feature Layer interface is enabled.
+  ActionSpatial action_render = 3;                 // Not implemented. Populated if Render interface is enabled.
+  ActionUI action_ui = 4;                          // Populated if Feature Layer or Render interface is enabled.
   repeated ActionChat chat = 5;                             // Chat messages as a player typing into the chat channel.
 }
 
 message ActionChat {
   enum Channel {
+    Channel_UNSET = 0;
     Broadcast = 1;
     Team = 2;
   }
-  optional Channel channel = 1;
-  optional string message = 2;
+  Channel channel = 1;
+  string message = 2;
 }
 
 message ActionError {
-  optional uint64 unit_tag = 1;                             // Only populated when using raw interface.
-  optional uint64 ability_id = 2;
-  optional ActionResult result = 3;
+  uint64 unit_tag = 1;                             // Only populated when using raw interface.
+  uint64 ability_id = 2;
+  ActionResult result = 3;
 }
 
 enum Alert {
+  Alert_UNSET = 0;
   NuclearLaunchDetected = 1;
   NydusWormDetected = 2;
 }
 
 enum Result {
+  Result_UNSET = 0;
   Victory = 1;
   Defeat = 2;
   Tie = 3;
@@ -586,6 +598,6 @@ enum Result {
 }
 
 message PlayerResult {
-  optional uint32 player_id = 1;
-  optional Result result = 2;
+  uint32 player_id = 1;
+  Result result = 2;
 }
