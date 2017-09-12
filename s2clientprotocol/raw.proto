@@ -28,6 +28,7 @@ message ObservationRaw {
   repeated Unit units = 2;
   optional MapState map_state = 3;                // Fog of war, creep and so on. Board stuff that changes per frame.
   optional Event event = 4;
+  repeated Effect effects = 5;
 }
 
 message PowerSource {
@@ -134,6 +135,15 @@ message MapState {
   optional ImageData creep = 2;                 // 1 byte creep layer.
 }
 
+message Event {
+  repeated uint64 dead_units = 1;
+}
+
+message Effect {
+  optional uint32 effect_id = 1;
+  repeated Point2D pos = 2;                     // Effect may impact multiple locations. (eg. Lurker attack)
+}
+
 
 //
 // Action
@@ -164,8 +174,4 @@ message ActionRawCameraMove {
 message ActionRawToggleAutocast {
   optional int32 ability_id = 1;
   repeated uint64 unit_tags = 2;
-}
-
-message Event {
-  repeated uint64 dead_units = 1;
 }

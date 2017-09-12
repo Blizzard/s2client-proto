@@ -110,3 +110,10 @@ message BuffData {
   optional uint32 buff_id = 1;          // Stable ID.
   optional string name = 2;
 }
+
+message EffectData {
+  optional uint32 effect_id = 1;          // Stable ID.
+  optional string name = 2;
+  optional string friendly_name = 3;
+  optional float radius = 4;
+}

@@ -25,10 +25,13 @@ message FeatureLayers {
   optional ImageData unit_hit_points = 8;           // int32.
   optional ImageData unit_hit_points_ratio = 17;    // uint8. Ratio of current health to max health. [0%, 100%] encoded into [0, 255].
   optional ImageData unit_energy = 9;               // int32.
+  optional ImageData unit_energy_ratio = 18;        // uint8. Ratio of current energy to max energy. [0%, 100%] encoded into [0, 255].
   optional ImageData unit_shields = 10;             // int32.
+  optional ImageData unit_shields_ratio = 19;       // uint8. Ratio of current shields to max shields. [0%, 100%] encoded into [0, 255].
   optional ImageData player_relative = 11;          // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
   optional ImageData unit_density_aa = 14;          // uint8. Density of units overlapping a pixel, anti-aliased. [0.0, 16.0f] encoded into [0, 255].
   optional ImageData unit_density = 15;             // uint8. Count of units overlapping a pixel.
+  optional ImageData effects = 20;                  // uint8. Visuals of persistent abilities. (eg. Psistorm)
 }
 
 message FeatureLayersMinimap {
