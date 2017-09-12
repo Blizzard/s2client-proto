@@ -40,6 +40,9 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 * **CommandCenter**
    * A robust architecture for quickly developing Starcraft AI bots.
    * [Repository](https://github.com/davechurchill/CommandCenter)
+* **s2client-dotnet**
+   * .NET "Standard" 2.0 port of the StarCraft II API Reference implementation.
+   * [Repository](https://github.com/matthid/s2client-dotnet)
 
 # Downloads
 
