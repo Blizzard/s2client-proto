@@ -1,5 +1,29 @@
 [
 {
+    "label": "3.17.2",
+    "data-hash": "c690fc543082d35ea0aaa876b8362bea",
+    "version": 57490,
+    "base-version": 56787,
+    "fixed-hash": "4474b6b7b0d1423daa76b9623ef2e9a9",
+    "replay-hash": "d0296961c9ea1356f727a2468967a1e2"
+},
+{
+    "label": "3.17.1",
+    "data-hash": "3f2fced08798d83b873b5543befa6c4b",
+    "version": 567218,
+    "base-version": 56787,
+    "fixed-hash": "4474b6b7b0d1423daa76b9623ef2e9a9",
+    "replay-hash": "d0296961c9ea1356f727a2468967a1e2"   
+},
+{
+    "label": "3.17.0",
+    "data-hash": "dfd1f6607f2cf19cb4e1c996b2563d9b",
+    "version": 56787,
+    "base-version": 56787,
+    "fixed-hash": "4e1c17ab6a79185a0d87f68d1c673cd9",
+    "replay-hash": "d0296961c9ea1356f727a2468967a1e2"
+},
+{
     "label": "3.16.1",
     "data-hash": "5bd7c31b44525dab46e64c4602a81dc2",
     "version": 55958,
