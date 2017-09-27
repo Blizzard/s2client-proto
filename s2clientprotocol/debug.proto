@@ -1,5 +1,5 @@
 
-syntax = "proto2";
+syntax = "proto3";
 
 package SC2APIProtocol;
 
@@ -28,45 +28,46 @@ message DebugDraw {
 }
 
 message Line {
-  optional Point p0 = 1;
-  optional Point p1 = 2;
+  Point p0 = 1;
+  Point p1 = 2;
 }
 
 message Color {
-  optional uint32 r = 1;
-  optional uint32 g = 2;
-  optional uint32 b = 3;
+  uint32 r = 1;
+  uint32 g = 2;
+  uint32 b = 3;
 }
 
 // Display debug text on screen.
 message DebugText {
-  optional Color color = 1;
-  optional string text = 2;         // Text to display.
-  optional Point virtual_pos = 3;   // Virtualized position in 2D (the screen is 0..1, 0..1 for any resolution).
-  optional Point world_pos = 4;     // Position in the world.
+  Color color = 1;
+  string text = 2;         // Text to display.
+  Point virtual_pos = 3;   // Virtualized position in 2D (the screen is 0..1, 0..1 for any resolution).
+  Point world_pos = 4;     // Position in the world.
 }
 
 // Display debug lines on screen.
 message DebugLine {
-  optional Color color = 1;
-  optional Line line = 2;           // World space line.
+  Color color = 1;
+  Line line = 2;           // World space line.
 }
 
 // Display debug boxes on screen.
 message DebugBox {
-  optional Color color = 1;
-  optional Point min = 2;
-  optional Point max = 3;
+  Color color = 1;
+  Point min = 2;
+  Point max = 3;
 }
 
 // Display debug spheres on screen.
 message DebugSphere {
-  optional Color color = 1;
-  optional Point p = 2;
-  optional float r = 3;
+  Color color = 1;
+  Point p = 2;
+  float r = 3;
 }
 
 enum DebugGameState {
+  DebugGameState_UNSET = 0;
   show_map = 1;
   control_enemy = 2;
   food = 3;
@@ -82,10 +83,10 @@ enum DebugGameState {
 }
 
 message DebugCreateUnit {
-  optional uint32 unit_type = 1;
-  optional int32 owner = 2;
-  optional Point2D pos = 3;
-  optional uint32 quantity = 4;
+  uint32 unit_type = 1;
+  int32 owner = 2;
+  Point2D pos = 3;
+  uint32 quantity = 4;
 }
 
 message DebugKillUnit {
@@ -94,37 +95,40 @@ message DebugKillUnit {
 
 message DebugTestProcess {
   enum Test {
+    UNSET = 0;
     hang = 1;
     crash = 2;
     exit = 3;
   }
-  optional Test test = 1;
-  optional int32 delay_ms = 2;
+  Test test = 1;
+  int32 delay_ms = 2;
 }
 
 message DebugSetScore {
-  optional float score = 1;
+  float score = 1;
 }
 
 message DebugEndGame {
   enum EndResult {
+    EndResult_UNSET = 0;
     Surrender = 1;                  // Default if nothing is set. The current player admits defeat.
     DeclareVictory = 2;
   }
-  optional EndResult end_result = 1;
+  EndResult end_result = 1;
 }
 
 message DebugSetUnitValue {
   enum UnitValue {
+    UnitValue_UNSET = 0;
     Energy = 1;
     Life = 2;
     Shields = 3;
   }
-  optional UnitValue unit_value = 1;
-  optional float value = 2;
-  optional uint64 unit_tag = 3;
+  UnitValue unit_value = 1;
+  float value = 2;
+  uint64 unit_tag = 3;
 }
 
 message DebugChat {
-    optional string message = 1;
+    string message = 1;
 }
