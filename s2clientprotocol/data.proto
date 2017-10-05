@@ -78,14 +78,14 @@ message UnitTypeData {
   optional uint32 vespene_cost = 13;
   optional float food_required = 14;
   optional float food_provided = 18;
-  optional uint32 ability_id = 15;                                // This is the ability the builds the unit
+  optional uint32 ability_id = 15;                                // The ability that builds this unit.
   optional Race race = 16;
   optional float build_time = 17;
   optional bool has_vespene = 19;
   optional bool has_minerals = 20;
 
-  repeated uint32 tech_alias = 21;                                // Units this is equivalent to in terms of satisfying tech requirement.
-  optional uint32 unit_alias = 22;                                // Units that are morphed variants of the same unit.
+  repeated uint32 tech_alias = 21;                                // Other units that satisfy the same tech requirement.
+  optional uint32 unit_alias = 22;                                // The morphed variant of this unit.
 
   optional uint32 tech_requirement = 23;                          // Structure required to build this unit. (Or any with the same tech_alias)
   optional bool require_attached = 24;                            // Whether tech_requirement is an add-on.
