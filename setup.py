@@ -13,7 +13,11 @@ from distutils.spawn import find_executable
 from setuptools import setup
 from setuptools.command.build_py import build_py
 
+<<<<<<< HEAD
 import gameversion_autogen as ver
+=======
+import gameversion_autogen
+>>>>>>> Initial autogen commit for testing 3.18
 
 SETUP_DIR = os.path.dirname(os.path.abspath(__file__))
 PROTO_DIR = os.path.join(SETUP_DIR, 's2clientprotocol')
