@@ -80,11 +80,11 @@
     "version": 57507
 },
 {
-    "base-version": "58400", 
+    "base-version": 58400, 
     "data-hash": "2B06AEE58017A7DF2A3D452D733F1019", 
     "fixed-hash": "2CFE1B8757DA80086DD6FD6ECFF21AC6", 
     "label": "3.19", 
     "replay-hash": "227B6048D55535E0FF5607746EBCC45E", 
-    "version": "58400"
+    "version": 58400
 }
 ]
