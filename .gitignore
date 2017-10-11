@@ -2,3 +2,5 @@
 *.pyc
 build/
 s2clientprotocol/__init__.py
+dist/
+s2clientprotocol.egg-info/
