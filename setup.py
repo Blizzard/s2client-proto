@@ -70,6 +70,7 @@ setup(
     author='Blizzard Entertainment',
     author_email='jrepp@blizzard.com',
     license='MIT',
+    url='https://github.com/Blizzard/s2client-proto',
     packages=[
         's2clientprotocol',
     ],
