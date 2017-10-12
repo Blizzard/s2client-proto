@@ -61,7 +61,7 @@ class BuildPy(build_py):
 
 setup(
     name='s2clientprotocol',
-    version='+'.join((ver.game_version(), ver.git_commit_hash())),
+    version='3.19.1.58600.0',
     description='StarCraft II - client protocol.',
     author='Blizzard Entertainment',
     author_email='jrepp@blizzard.com',
