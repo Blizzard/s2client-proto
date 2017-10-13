@@ -225,7 +225,7 @@ When resolving a path
 The game simulation is completely deterministic when using the same random seed.
 When the seed is not fixed, there is slight randomness for mostly cosmetic reasons.
 
-For example, these is a tiny amount of randomness in the delay between Marine shots. This makes it so if you have a large group of marines that all start firing together, their shooting will quickly become out of sync and look less robotic.
+For example, there is a tiny amount of randomness in the delay between Marine shots. This makes it so if you have a large group of marines that all start firing together, their shooting will quickly become out of sync and look less robotic.
 
 The order in which units update is also randomized. This makes it so that if two players issue an attack on the exact same frame, it will be random which one performs the damage first and wins.
 
