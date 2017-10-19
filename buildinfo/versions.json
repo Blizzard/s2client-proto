@@ -86,5 +86,13 @@
     "label": "3.19", 
     "replay-hash": "227B6048D55535E0FF5607746EBCC45E", 
     "version": 58400
+},
+{
+    "base-version": 58400,
+    "data-hash": "D9B568472880CC4719D1B698C0D86984",
+    "fixed-hash": "CE1005E9B145BDFC8E5E40CDEB5E33BB",
+    "label": "3.19.1",
+    "replay-hash": "227B6048D55535E0FF5607746EBCC45E",
+    "version": 58600
 }
 ]
