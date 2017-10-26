@@ -29,45 +29,75 @@ message VitalScoreDetails {
 }
 
 message ScoreDetails {
-  optional float idle_production_time = 1; // Interesting as a delta
-  optional float idle_worker_time = 2; // Interesting as a delta
+  // Sum of time any available structure able to produce a unit is not. The time stacks, as in, three idle barracks will increase idle_production_time three times quicker than just one.
+  optional float idle_production_time = 1;
+  // Sum of time any worker is not mining. Note a worker building is not idle and three idle workers will increase this value three times quicker than just one.
+  optional float idle_worker_time = 2;
 
-  // Note the "total_value" fields are a combination of minerals, vespene and a human designer guess. Maybe useful as a delta.
+  // Sum of minerals and vespene spent on completed units.
   optional float total_value_units = 3;
+  // Sum of minerals and vespene spent on completed structures.
   optional float total_value_structures = 4;
 
-  // Note the "killed_value" fields are a combination of minerals, vespene and a human designer guess. Maybe useful as a delta.
-  // The weighting of the combination and the human designer guess is different (not symmetric) with the "total_value" fields!
+  // Sum of minerals and vespene of units, belonging to the opponent, that the player has destroyed.
   optional float killed_value_units = 5;
+  // Sum of minerals and vespene of structures, belonging to the opponent, that the player has destroyed.
   optional float killed_value_structures = 6;
 
+  // Sum of minerals collected by the player.
   optional float collected_minerals = 7;
+  // Sum of vespene collected by the player.
   optional float collected_vespene = 8;
 
+  // Estimated income of minerals over the next minute based on the players current income. The unit is minerals per minute.
   optional float collection_rate_minerals = 9;
+  // Estimated income of vespene over the next minute based on the players current income. The unit is vespene per minute.
   optional float collection_rate_vespene = 10;
 
+  // Sum of spent minerals at the moment it is spent. For example, this number is incremented by 50 the moment an scv is queued in a command center.  It is decremented by 50 if that unit is canceled.
   optional float spent_minerals = 11;
+  // Sum of spent vespene at the moment it is spent. For example, this number is incremented by 50 when a reaper is queued but decremented by 50 if it is canceled.
   optional float spent_vespene = 12;
 
-  optional CategoryScoreDetails food_used = 13;
+  // The following entries contains floating point values for the following catgories:
+  //   none - There is no category defined in game data.
+  //   army - This category includes all military units but not workers.
+  //   economy - This category contains town halls, supply structures, vespene buildings and workers.
+  //   technology - This category is any structure that produces units or upgrades, Barracks and Engineering Bays both fall in this category, for example.
+  //   upgrade - This category is upgrades such as warp gate or weapons upgrades.
 
+  // Sum of food, or supply, utilized in the categories above.
+  optional CategoryScoreDetails food_used = 13;
+  
+  // Sum of enemies catagories destroyed in minerals.
   optional CategoryScoreDetails killed_minerals = 14;
+  // Sum of enemies catagories destroyed in vespene.
   optional CategoryScoreDetails killed_vespene = 15;
 
+  //  Sum of lost minerals for the player in each category.
   optional CategoryScoreDetails lost_minerals = 16;
+  // Sum of lost vespene for the player in each category.
   optional CategoryScoreDetails lost_vespene = 17;
 
+  // Sum of the lost minerals via destroying the players own units/buildings.
   optional CategoryScoreDetails friendly_fire_minerals = 18;
+  // Sum of the lost vespene via destroying the players own units/buildings.
   optional CategoryScoreDetails friendly_fire_vespene = 19;
 
+  // Sum of used minerals for the player in each category for each existing unit or upgrade. Therefore if a unit died worth 50 mierals this number will be decremented by 50.
   optional CategoryScoreDetails used_minerals = 20;
+  // Sum of used vespene for the player in each category. Therefore if a unit died worth 50 vespene this number will be decremented by 50.
   optional CategoryScoreDetails used_vespene = 21;
 
-  optional CategoryScoreDetails total_used_minerals = 22; // Interesting as a delta
-  optional CategoryScoreDetails total_used_vespene = 23; // Interesting as a delta
+  // Sum of used minerals throughout the entire game for each category. Unliked used_minerals, this value is never decremented.
+  optional CategoryScoreDetails total_used_minerals = 22;
+  // Sum of used vespene throughout the entire game for each category. Unliked used_vespene, this value is never decremented.
+  optional CategoryScoreDetails total_used_vespene = 23;
 
-  optional VitalScoreDetails total_damage_dealt = 24; // Interesting as a delta
-  optional VitalScoreDetails total_damage_taken = 25; // Interesting as a delta
-  optional VitalScoreDetails total_healed = 26; // Interesting as a delta
+  // Sum of damage dealt to the player's opponent for each category.
+  optional VitalScoreDetails total_damage_dealt = 24;
+  // Sum of damage taken by the player for each category.
+  optional VitalScoreDetails total_damage_taken = 25;
+  // Sum of health healed by the player. Note that technology can be healed (by queens) or repaired (by scvs).
+  optional VitalScoreDetails total_healed = 26;
 }
