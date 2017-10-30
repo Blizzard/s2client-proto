@@ -16,7 +16,6 @@ message DebugCommand {
     DebugSetScore score = 6;                // Useful only for single-player "curriculum" maps.
     DebugEndGame end_game = 7;
     DebugSetUnitValue unit_value = 8;
-    DebugChat chat = 9;                     // TODO.
   }
 }
 
@@ -126,6 +125,3 @@ message DebugSetUnitValue {
   optional uint64 unit_tag = 3;
 }
 
-message DebugChat {
-    optional string message = 1;
-}
