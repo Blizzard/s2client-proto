@@ -571,7 +571,7 @@ message Action {
   optional ActionSpatial action_feature_layer = 2;          // Populated if Feature Layer interface is enabled.
   optional ActionSpatial action_render = 3;                 // Not implemented. Populated if Render interface is enabled.
   optional ActionUI action_ui = 4;                          // Populated if Feature Layer or Render interface is enabled.
-  repeated ActionChat chat = 5;                             // Chat messages as a player typing into the chat channel.
+  optional ActionChat action_chat = 6;                      // Chat messages as a player typing into the chat channel.
 }
 
 message ActionChat {
