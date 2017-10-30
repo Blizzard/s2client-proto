@@ -340,7 +340,7 @@ message ResponseObservation {
 }
 
 message ChatReceived {
-  optional int32 player_id = 1;
+  optional uint32 player_id = 1;
   optional string message = 2;
 }
 
