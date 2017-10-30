@@ -4,11 +4,10 @@ import json
 import argparse
 import urlparse
 import shutil
+import subprocess
 
 import sys
 sys.path.insert(0, '../')
-
-import buildpylib.shared as shared
 
 API_BASE_URL = 'https://us.api.battle.net'
 API_NAMESPACE = 's2-client-replays'
@@ -111,7 +110,7 @@ def get_replay_pack(client_version, client_key, client_secret, replays_dir, extr
         if extract:
             for file in files:
                 s = '7z e {0} -o{1} -piagreetotheeula'.format(file, os.path.dirname(file))
-                shared.sh(s)
+                subprocess.call(s)
                 os.remove(file)
     except Exception as e:
         import traceback
