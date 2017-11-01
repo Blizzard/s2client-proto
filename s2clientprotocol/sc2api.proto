@@ -267,6 +267,7 @@ message RequestStartReplay {
   optional InterfaceOptions options = 3;
 
   optional bool disable_fog = 4;
+  optional bool realtime = 7;
 }
 
 message ResponseStartReplay {
