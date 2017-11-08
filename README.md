@@ -35,14 +35,24 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 ## Community
 
 * **PySC2**
-   * DeepMind's python environment wrapper. 
-   * [Repository](https://github.com/deepmind/pysc2)
+  * DeepMind's python environment wrapper. 
+  * [Repository](https://github.com/deepmind/pysc2)
 * **CommandCenter**
-   * A robust architecture for quickly developing Starcraft AI bots.
-   * [Repository](https://github.com/davechurchill/CommandCenter)
-* **s2client-dotnet**
-   * .NET "Standard" 2.0 port of the StarCraft II API Reference implementation.
-   * [Repository](https://github.com/matthid/s2client-dotnet)
+  * A robust architecture for quickly developing Starcraft AI bots.
+  * [Repository](https://github.com/davechurchill/CommandCenter)
+* **Bot Ladder**
+  * Unofficial community organized ladder.
+  * [Website](http://sc2ai.net/)
+* **Community Wiki**
+  * Unofficial wiki of documentation and tutorials.
+  * [Website](http://wiki.sc2ai.net/Main_Page)
+* **Discord Server**
+  * Unofficial server for discussing AI questions and projects.
+  * [Invite Link](https://discord.gg/qTZ65sh)
+* **Facebook Group**
+  * Unofficial community page.
+  * [Website](https://www.facebook.com/groups/969196249883813/)
+
 
 # Downloads
 
