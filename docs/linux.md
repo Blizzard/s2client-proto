@@ -23,6 +23,14 @@ Optional:
     * Defaults to: /tmp/
 * **verbose**
     * Enables logging of all protocol requests/responses to std::err.
+* **eglpath**
+    * Sets the path the to harware rendering library.
+    * Required for using the rendered interface with hardware rendering
+    * Example: /usr/lib/nvidia-384/libEGL.so
+* **osmesapath**
+    * Sets the path the to software rendering library.
+    * Required for using the rendered interface with software rendering
+    * Example: /usr/lib/x86_64-linux-gnu/libOSMesa.so
 
 ## Bug Reporting
 

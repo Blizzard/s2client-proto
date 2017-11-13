@@ -162,7 +162,9 @@ All positions are based on screen space coordinates. The upper left of the image
 
 This exposes the full fidelty rendered frame buffer that a human player sees.
 
-This interface is not implemented yet in the current release.
+This interface is fully supported on all platforms including Linux. On Linux it supports both hardware and software rendering.
+
+The action interface is very similar to that of feature layers, where the user interface is represented separately.
 
 
 # General
