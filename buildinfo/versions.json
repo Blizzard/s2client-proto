@@ -88,11 +88,11 @@
     "version": 58400
 },
 {
-    "base-version": "59587",
+    "base-version": 59587,
     "data-hash": "9B4FD995C61664831192B7DA46F8C1A1",
     "fixed-hash": "D5D5798A9CCD099932C8F855C8129A7C",
     "label": "4.0",
     "replay-hash": "BB4DA41B57D490BD13C13A594E314BA4",
-    "version": "59587"
+    "version": 59587
 }
 ]
