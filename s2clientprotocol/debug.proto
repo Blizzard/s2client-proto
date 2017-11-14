@@ -16,7 +16,6 @@ message DebugCommand {
     DebugSetScore score = 6;                // Useful only for single-player "curriculum" maps.
     DebugEndGame end_game = 7;
     DebugSetUnitValue unit_value = 8;
-    DebugChat chat = 9;                     // TODO.
   }
 }
 
@@ -44,6 +43,7 @@ message DebugText {
   optional string text = 2;         // Text to display.
   optional Point virtual_pos = 3;   // Virtualized position in 2D (the screen is 0..1, 0..1 for any resolution).
   optional Point world_pos = 4;     // Position in the world.
+  optional uint32 size = 5;         // Pixel height of the text. Defaults to 8px.
 }
 
 // Display debug lines on screen.
@@ -125,6 +125,3 @@ message DebugSetUnitValue {
   optional uint64 unit_tag = 3;
 }
 
-message DebugChat {
-    optional string message = 1;
-}
