@@ -83,6 +83,7 @@ message UnitTypeData {
   optional float build_time = 17;
   optional bool has_vespene = 19;
   optional bool has_minerals = 20;
+  optional float sight_range = 25;                                // Range unit reveals vision.
 
   repeated uint32 tech_alias = 21;                                // Other units that satisfy the same tech requirement.
   optional uint32 unit_alias = 22;                                // The morphed variant of this unit.
