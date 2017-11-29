@@ -66,7 +66,7 @@ The files are password protected with the password 'iagreetotheeula'.
 
 * [3.17](http://blzdistsc2-a.akamaihd.net/Linux/SC2.3.17.zip)
 * [3.16.1](http://blzdistsc2-a.akamaihd.net/Linux/SC2.3.16.1.zip)
-* [4.0.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.3.16.1.zip)
+* [4.0.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.0.2.zip)
 
 ## Map Packs
 
