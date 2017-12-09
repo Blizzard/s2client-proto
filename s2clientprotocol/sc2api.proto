@@ -567,6 +567,8 @@ message Observation {
   optional ObservationUI ui_data = 8;                       // Populated if Feature Layer or Render interface is enabled.
 }
 
+// Only one of these Action fields should be set at once
+// TODO make this a `oneof` ?
 message Action {
   optional ActionRaw action_raw = 1;                        // Populated if Raw interface is enabled.
   optional ActionSpatial action_feature_layer = 2;          // Populated if Feature Layer interface is enabled.
