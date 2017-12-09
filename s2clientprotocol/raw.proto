@@ -65,10 +65,11 @@ enum Alliance {
   Enemy = 4;
 }
 
+// Currently it is not possible to observe the "shimmer" of a cloaked and undetected unit.
 enum CloakState {
-  Cloaked = 1;
-  CloakedDetected = 2;
-  NotCloaked = 3;
+  Cloaked = 1;		// A unit that is currently cloaked. Only applies to your own units.
+  CloakedDetected = 2;	// An enemy unit that was cloaked, but is currently being detected by a detector.
+  NotCloaked = 3;	// A regular un-cloaked unit.
 }
 
 message PassengerUnit {
