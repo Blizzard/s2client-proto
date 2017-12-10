@@ -127,5 +127,5 @@ message ActionProductionPanelRemoveFromQueue {
 }
 
 message ActionToggleAutocast {
-  optional int32 ability_id = 1;
+  optional uint32 ability_id = 1;
 }
