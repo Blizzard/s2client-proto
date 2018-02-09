@@ -1,70 +1,64 @@
+"""Download replay packs via Blizzard Game Data APIs."""
+
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import argparse
+import json
 import os
 import requests
-import json
-import argparse
-import urlparse
 import shutil
 import subprocess
-
 import sys
-sys.path.insert(0, '../')
 
 API_BASE_URL = 'https://us.api.battle.net'
 API_NAMESPACE = 's2-client-replays'
 
 
-def get_bnet_oauth_access_token(url, key, secret):
-    headers = { "Content-Type": "application/json"}
-    params = {
-        "grant_type": "client_credentials",
-        "client_id" : key,
-        "client_secret" : secret
-    }
-    response = requests.post(url=url, headers=headers, params=params)
-    response = json.loads(response.text)
-    if 'access_token' in response:
-        return response['access_token']
-    raise Exception('Failed to get oauth access token. response={}'.format(response))
+class BnetAPI(object):
 
+    def __init__(self, key, secret):
+        headers = {"Content-Type": "application/json"}
+        params = {
+            "grant_type": "client_credentials",
+            "client_id" : key,
+            "client_secret" : secret,
+        }
+        response = requests.post("https://us.battle.net/oauth/token", headers=headers, params=params)
+        response = json.loads(response.text)
+        if 'access_token' in response:
+            self._token = response['access_token']
+        else:
+            raise Exception('Failed to get oauth access token. response={}'.format(response))
 
-def get_base_url(access_token):
-    headers = {"Authorization": "Bearer " + access_token}
-    params = {
-        'namespace' : API_NAMESPACE,
-    }
-    response = requests.get(urlparse.urljoin(API_BASE_URL, "/data/sc2/archive_url/base_url"), headers=headers,
-                          params=params)
-    return json.loads(response.text)["base_url"]
+    def get(self, url, params=None):
+        params = params or {}
+        params['namespace'] = API_NAMESPACE,
+        headers = {"Authorization": "Bearer " + self._token}
+        response = requests.get(url, headers=headers, params=params)
+        return json.loads(response.text)
 
+    def url(self, path):
+        return requests.compat.urljoin(API_BASE_URL, path)
 
-def search_by_client_version(access_token, client_version):
-    headers = {"Authorization": "Bearer " + access_token}
-    params = {
-        'namespace' : API_NAMESPACE,
-        'client_version' : client_version,
-        '_pageSize' : 25
-    }
-    response = requests.get(urlparse.urljoin(API_BASE_URL, "/data/sc2/search/archive"), headers=headers, params=params)
-    response = json.loads(response.text)
-    meta_urls = []
-    for result in response['results']:
-        assert result['data']['client_version'] == client_version
-        meta_urls.append(result['key']['href'])
-    return meta_urls
+    def get_base_url(self):
+        return self.get(self.url("/data/sc2/archive_url/base_url"))["base_url"]
 
-
-def get_meta_file_info(access_token, url):
-    headers = { "Authorization": "Bearer " + access_token}
-    params = {
-        'namespace' : API_NAMESPACE,
-    }
-
-    response = requests.get(url, headers=headers, params=params)
-    return json.loads(response.text)
+    def search_by_client_version(self, client_version):
+        params = {
+            'client_version' : client_version,
+            '_pageSize' : 100,
+        }
+        response = self.get(self.url("/data/sc2/search/archive"), params)
+        meta_urls = []
+        for result in response['results']:
+            assert result['data']['client_version'] == client_version
+            meta_urls.append(result['key']['href'])
+        return meta_urls
 
 
 def download_file(url, output_dir):
-    # Create output_dir if not exists.
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
@@ -72,64 +66,58 @@ def download_file(url, output_dir):
     file_path = os.path.join(output_dir, file_name)
 
     response = requests.get(url, stream=True)
-    with open(file_path, 'wb') as f:
-        shutil.copyfileobj(response.raw, f)
+    if (not os.path.exists(file_path) or
+        os.path.getsize(file_path) != int(response.headers['Content-Length'])):
+        with open(file_path, 'wb') as f:
+            shutil.copyfileobj(response.raw, f)
 
     return file_path
 
 
-def get_replay_pack(client_version, client_key, client_secret, replays_dir, extract=False):
-    try:
-        # Get OAuth token from us region
-        access_token = get_bnet_oauth_access_token("https://us.battle.net/oauth/token", client_key, client_secret)
+def main():
+    args = parse_args()
 
-        # Get the base url for downloading replay packs
-        download_base_url = get_base_url(access_token)
+    # Get OAuth token from us region
+    api = BnetAPI(args.key, args.secret)
 
-        # Get meta file infos for the give client version
-        print 'Searching replay packs with client version=' + client_version
-        meta_file_urls = search_by_client_version(access_token, client_version)
-        if len(meta_file_urls) == 0:
-            print 'No matching replay packs found for the client version!'
-            return
+    # Get the base url for downloading replay packs
+    download_base_url = api.get_base_url()
 
-        # For each meta file, construct full url to download replay packs
-        print 'Building urls for downloading replay packs. num_files={0}'.format(len(meta_file_urls))
-        download_urls=[]
-        for meta_file_url in meta_file_urls:
-            meta_file_info = get_meta_file_info(access_token, meta_file_url)
-            file_path = meta_file_info['path']
-            download_urls.append(urlparse.urljoin(download_base_url, file_path))
+    # Get meta file infos for the give client version
+    print('Searching replay packs with client version:', args.version)
+    meta_file_urls = api.search_by_client_version(args.version)
+    if len(meta_file_urls) == 0:
+        print('No matching replay packs found for the client version!')
+        return
 
-        # Download replay packs.
-        files = []
-        for archive_url in sorted(download_urls):
-            print 'Downloading replay packs. url='  + archive_url
-            files.append(download_file(archive_url, replays_dir))
+    # For each meta file, construct full url to download replay packs
+    print('Building urls for downloading replay packs. Number of packs:', len(meta_file_urls))
+    download_urls = []
+    for meta_file_url in meta_file_urls:
+        meta_file_info = api.get(meta_file_url)
+        download_urls.append(requests.compat.urljoin(download_base_url, meta_file_info['path']))
 
-        if extract:
-            for file in files:
-                s = '7z e {0} -o{1} -piagreetotheeula'.format(file, os.path.dirname(file))
-                subprocess.call(s)
-                os.remove(file)
-    except Exception as e:
-        import traceback
-        print 'Failed to download replay packs. traceback={}'.format(traceback.format_exc())
+    # Download replay packs.
+    files = []
+    for archive_url in sorted(download_urls):
+        print('Downloading replay pack:', archive_url)
+        files.append(download_file(archive_url, args.replays_dir))
+
+    if args.extract:
+        for file in files:
+            print('Extracting replay pack:', file)
+            subprocess.call(['unzip', '-P', 'iagreetotheeula', '-o', '-d', os.path.dirname(file), file])
+            os.remove(file)
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--client_key', dest='client_key', action='store', type=str, help='Battle.net API key', required=True)
-    parser.add_argument('--client_secret', dest='client_secret', action='store', type=str, help='Battle.net API secret', required=True)
-    parser.add_argument('--s2_client_version', dest='s2_client_version', action='store', type=str,
-                      help='Starcraft2 client version for searching replay archives with', required=True)
-    parser.add_argument('--replays_dir', dest='replays_dir', action='store', type=str, default='./replays', help='the directory for saving downloaded replay archives', required=True)
+    parser.add_argument('--key', required=True, help='Battle.net API key.')
+    parser.add_argument('--secret', required=True, help='Battle.net API secret.')
+    parser.add_argument('--version', required=True, help='Download all replays from this Starcraft2 game version.')
+    parser.add_argument('--replays_dir', default='./replays', help='Where to save the replays.')
+    parser.add_argument('--extract', action='store_true', help='Whether to extract the zip files.')
     return parser.parse_args()
-
-
-def main():
-    args = parse_args()
-    get_replay_pack(args.s2_client_version, args.client_key, args.client_secret, args.replays_dir)
 
 
 if __name__ == '__main__':

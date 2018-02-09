@@ -7,7 +7,7 @@
     1. You can find them under the 'My Account' page after logging into the developer portal.
 
 ## Requirements
-The script is written in Python 2.7. Dependant packages can be installed via:
+The script is written in Python. Dependant packages can be installed via:
 ```
 pip install -r requirements.txt
 ```
@@ -21,9 +21,10 @@ Run `download_replays.py` providing:
     1. **Replays are version dependent**. Ensure the version you request is consistent with the build environment in which you intend to utilize them.  
     2. A version list can be found in [/buildinfo/versions.json](https://github.com/Blizzard/s2client-proto/blob/master/buildinfo/versions.json).  
 4. Local Replay directory for storing the replays. `<directory>`
+5. Optionally add `--extract` to unzip them to the replay directory.
 
 ```
-python download_replays.py --client_key=<key> --client_secret=<secret> --s2_client_version=<version> --replays_dir=<directory>
+python download_replays.py --key=<key> --secret=<secret> --version=<version> --replays_dir=<directory> [--extract]
 ```
 Once the script is run successfully, any matching replay packs will be downloaded to the directory provided.
 
