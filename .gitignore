@@ -4,3 +4,4 @@ build/
 s2clientprotocol/__init__.py
 dist/
 s2clientprotocol.egg-info/
+/s2clientprotocol_proto3
