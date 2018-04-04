@@ -36,7 +36,7 @@ import "s2clientprotocol/ui.proto";
 //                  | ended (singleplayer only)                         | init_game             |
 // join_game*       | init_game (singleplayer or multiplayer host only) | in_game               |
 //                  | launched (multiplayer client only)                | in_game               |
-// restart_game     | ended (singleplayer only)                         | in_game               |
+// restart_game     | ended                                             | in_game               |
 // start_replay     | launched                                          | in_replay             |
 //                  | ended (singleplayer only)                         |                       |
 // leave_game       | in_game (required when finishing multiplayer)     | launched              |
@@ -63,6 +63,7 @@ import "s2clientprotocol/ui.proto";
 //                  | ended                                             |                       |
 // save_replay      | in_game                                           |                       |
 //                  | ended (only after a game)                         |                       |
+// map_command      | in_game                                           |                       |
 // replay_info      | any                                               |                       |
 // available_maps   | any                                               |                       |
 // save_map         | any                                               |                       |
@@ -103,6 +104,7 @@ message Request {
     RequestData data = 13;                      // Data about different gameplay elements. May be different for different games.
     RequestQuery query = 14;                    // Additional methods for inspecting game state.
     RequestSaveReplay save_replay = 15;         // Generates a replay.
+    RequestMapCommand map_command = 22;         // Executes a particular trigger through a string interface
 
     // Other.
     RequestReplayInfo replay_info = 16;         // Returns metadata about a replay file. Does not load the replay.
@@ -136,6 +138,7 @@ message Response {
     ResponseData data = 13;
     ResponseQuery query = 14;
     ResponseSaveReplay save_replay = 15;
+    ResponseMapCommand map_command = 22;
 
     ResponseReplayInfo replay_info = 16;
     ResponseAvailableMaps available_maps = 17;
@@ -213,6 +216,8 @@ message RequestJoinGame {
   repeated PortSet client_ports = 5;        // Do not set in the single-player case. These are the ports clients will use to initialize communication.
                                             // Currently only a singe client is supported.
   optional int32 shared_port = 6;
+
+	optional string listen_address = 7;				// Address or hostname to use when binding game network ports
 }
 
 message PortSet {
@@ -248,12 +253,14 @@ message ResponseJoinGame {
 message RequestRestartGame {
 }
 
+// The defaultRestartGameLoops is specified to be (1<<18) by default
 message ResponseRestartGame {
   enum Error {
     LaunchError = 1;
   }
   optional Error error = 1;
   optional string error_details = 2;
+  optional bool need_hard_reset = 3;  // This will occur once the simulation_loop is greater then defaultRestartGameLoops
 }
 
 //-----------------------------------------------------------------------------
@@ -279,6 +286,19 @@ message ResponseStartReplay {
     InvalidObservedPlayerId = 5;
     MissingOptions = 6;
     LaunchError = 7;
+  }
+  optional Error error = 1;
+  optional string error_details = 2;
+}
+
+//-----------------------------------------------------------------------------
+message RequestMapCommand {
+  optional string trigger_cmd = 1;
+}
+
+message ResponseMapCommand {
+  enum Error {
+    NoTriggerError = 1;
   }
   optional Error error = 1;
   optional string error_details = 2;
@@ -365,10 +385,15 @@ message ResponseObserverAction  {
 
 //-----------------------------------------------------------------------------
 message RequestStep {
-  optional uint32 count = 1;                    // Number of game loops to simulate for the next frame.
+  optional uint32 count = 1;               // Number of game loops to simulate for the next frame.
 }
 
 message ResponseStep {
+  //  Max simulation_loop is (1<<19) before "end of time" will occur
+  //  The "end of time" is classified as the maximum number of game loops or absolute game time
+  //  representable as a positive fixed point number.
+  //  When we reach the "end of time", permanently pause the game and end the game for all.
+  optional uint32 simulation_loop = 1;
 }
 
 //-----------------------------------------------------------------------------
