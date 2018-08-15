@@ -36,7 +36,7 @@ import "s2clientprotocol/ui.proto";
 //                  | ended (singleplayer only)                         | init_game             |
 // join_game*       | init_game (singleplayer or multiplayer host only) | in_game               |
 //                  | launched (multiplayer client only)                | in_game               |
-// restart_game     | ended                                             | in_game               |
+// restart_game     | ended (singleplayer only)                         | in_game               |
 // start_replay     | launched                                          | in_replay             |
 //                  | ended (singleplayer only)                         |                       |
 // leave_game       | in_game (required when finishing multiplayer)     | launched              |
@@ -64,7 +64,6 @@ import "s2clientprotocol/ui.proto";
 // save_replay      | in_game                                           |                       |
 //                  | ended (only after a game)                         |                       |
 // map_command      | in_game                                           |                       |
-//                  | ended                                             |                       |
 // replay_info      | any                                               |                       |
 // available_maps   | any                                               |                       |
 // save_map         | any                                               |                       |
@@ -143,7 +142,7 @@ message Response {
     ResponseReplayInfo replay_info = 16;
     ResponseAvailableMaps available_maps = 17;
     ResponseSaveMap save_map = 18;
-	ResponseMapCommand map_command = 22;
+    ResponseMapCommand map_command = 22;
 
     // Debugging
     ResponsePing ping = 19;
