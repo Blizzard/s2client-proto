@@ -36,7 +36,7 @@ import "s2clientprotocol/ui.proto";
 //                  | ended (singleplayer only)                         | init_game             |
 // join_game*       | init_game (singleplayer or multiplayer host only) | in_game               |
 //                  | launched (multiplayer client only)                | in_game               |
-// restart_game     | ended (singleplayer only)                         | in_game               |
+// restart_game     | ended                                             | in_game               |
 // start_replay     | launched                                          | in_replay             |
 //                  | ended (singleplayer only)                         |                       |
 // leave_game       | in_game (required when finishing multiplayer)     | launched              |
@@ -63,6 +63,8 @@ import "s2clientprotocol/ui.proto";
 //                  | ended                                             |                       |
 // save_replay      | in_game                                           |                       |
 //                  | ended (only after a game)                         |                       |
+// map_command      | in_game                                           |                       |
+//                  | ended                                             |                       |
 // replay_info      | any                                               |                       |
 // available_maps   | any                                               |                       |
 // save_map         | any                                               |                       |
@@ -103,6 +105,7 @@ message Request {
     RequestData data = 13;                      // Data about different gameplay elements. May be different for different games.
     RequestQuery query = 14;                    // Additional methods for inspecting game state.
     RequestSaveReplay save_replay = 15;         // Generates a replay.
+    RequestMapCommand map_command = 22;         // Execute a particular trigger through a string interface
 
     // Other.
     RequestReplayInfo replay_info = 16;         // Returns metadata about a replay file. Does not load the replay.
@@ -140,6 +143,7 @@ message Response {
     ResponseReplayInfo replay_info = 16;
     ResponseAvailableMaps available_maps = 17;
     ResponseSaveMap save_map = 18;
+	ResponseMapCommand map_command = 22;
 
     // Debugging
     ResponsePing ping = 19;
@@ -279,6 +283,19 @@ message ResponseStartReplay {
     InvalidObservedPlayerId = 5;
     MissingOptions = 6;
     LaunchError = 7;
+  }
+  optional Error error = 1;
+  optional string error_details = 2;
+}
+
+//-----------------------------------------------------------------------------
+message RequestMapCommand {
+  optional string trigger_cmd = 1;
+}
+
+message ResponseMapCommand {
+  enum Error {
+    NoTriggerError = 1;
   }
   optional Error error = 1;
   optional string error_details = 2;
