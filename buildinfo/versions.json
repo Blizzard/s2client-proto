@@ -128,6 +128,22 @@
         "version": 60604
     }, 
     {
+        "base-version": 60321, 
+        "data-hash": "F486693E00B2CD305B39E0AB254623EB", 
+        "fixed-hash": "AF7F5499862F497C7154CB59167FEFB3", 
+        "label": "4.1.3", 
+        "replay-hash": "8EE054A8D98C7B0207E709190A6F3953", 
+        "version": 61021
+    }, 
+    {
+        "base-version": 60321, 
+        "data-hash": "2E2A3F6E0BAFE5AC659C4D39F13A938C", 
+        "fixed-hash": "F9A68CF1FBBF867216FFECD9EAB72F4A", 
+        "label": "4.1.4", 
+        "replay-hash": "8EE054A8D98C7B0207E709190A6F3953", 
+        "version": 61545
+    }, 
+    {
         "base-version": 62347, 
         "data-hash": "C0C0E9D37FCDBC437CE386C6BE2D1F93", 
         "fixed-hash": "A5C4BE991F37F1565097AAD2A707FC4C", 
@@ -152,22 +168,6 @@
         "version": 63454
     }, 
     {
-        "base-version": 63454, 
-        "data-hash": "5E3A8B21E41B987E05EE4917AAD68C69", 
-        "fixed-hash": "B7555C1F2F0628FD78DBE29589B53406", 
-        "label": "4.2.3", 
-        "replay-hash": "BF2054AB7942A1F2D189558968ACF810", 
-        "version": 63785
-    }, 
-    {
-        "base-version": 63454, 
-        "data-hash": "7C51BC7B0841EACD3535E6FA6FF2116B", 
-        "fixed-hash": "1044EFDA0AB3BE6ED3E52673FE45B98E", 
-        "label": "4.2.4", 
-        "replay-hash": "BF2054AB7942A1F2D189558968ACF810", 
-        "version": 64128
-    }, 
-    {
         "base-version": 64469, 
         "data-hash": "C92B3E9683D5A59E08FC011F4BE167FF", 
         "fixed-hash": "DDF3E0A6C00DC667F59BF90F793C71B8", 
@@ -190,5 +190,21 @@
         "label": "4.3.2", 
         "replay-hash": "DD9B57C516023B58F5B588377880D93A", 
         "version": 65384
+    }, 
+    {
+        "base-version": 65895, 
+        "data-hash": "BF41339C22AE2EDEBEEADC8C75028F7D", 
+        "fixed-hash": "C622989A4C0AF7ED5715D472C953830B", 
+        "label": "4.4", 
+        "replay-hash": "441BBF1A222D5C0117E85B118706037F", 
+        "version": 65895
+    }, 
+    {
+        "base-version": 66668, 
+        "data-hash": "C094081D274A39219061182DBFD7840F", 
+        "fixed-hash": "1C236A42171AAC6DD1D5E50D779C522D", 
+        "label": "4.4.1", 
+        "replay-hash": "21D5B4B4D5175C562CF4C4A803C995C6", 
+        "version": 66668
     }
 ]
