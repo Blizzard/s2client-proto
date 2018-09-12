@@ -206,5 +206,21 @@
         "label": "4.4.1", 
         "replay-hash": "21D5B4B4D5175C562CF4C4A803C995C6", 
         "version": 66668
+    }, 
+    {
+        "base-version": 67188, 
+        "data-hash": "2ACF84A7ECBB536F51FC3F734EC3019F", 
+        "fixed-hash": "2F0094C990E0D4E505570195F96C2A0C", 
+        "label": "4.5", 
+        "replay-hash": "E9873B3A3846F5878CEE0D1E2ADD204A", 
+        "version": 67188
+    }, 
+    {
+        "base-version": 67188, 
+        "data-hash": "6D239173B8712461E6A7C644A5539369", 
+        "fixed-hash": "A1BC35751ACC34CF887321A357B40158", 
+        "label": "4.5.1", 
+        "replay-hash": "E9873B3A3846F5878CEE0D1E2ADD204A", 
+        "version": 67344
     }
 ]
