@@ -526,6 +526,7 @@ message PlayerSetup {
   // Only used for a computer player.
   optional Race race = 2;
   optional Difficulty difficulty = 3;
+  optional string player_name = 4;
 }
 
 message SpatialCameraSetup {
