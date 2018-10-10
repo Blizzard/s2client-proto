@@ -50,9 +50,18 @@ message CargoPanel {
   optional int32 slots_available = 3;       // TODO: Change to cargo size
 }
 
+message BuildItem {
+  optional uint32 ability_id = 1;
+  optional float build_progress = 2;    // Range: [0.0, 1.0]
+}
+
 message ProductionPanel {
   optional UnitInfo unit = 1;
+
+  // build_queue ONLY gives information about units that are being produced.
+  // Use production_queue instead to see both units being trained as well as research in the queue.
   repeated UnitInfo build_queue = 2;
+  repeated BuildItem production_queue = 3;
 }
 
 
