@@ -12,7 +12,7 @@ import shutil
 import subprocess
 import sys
 
-API_BASE_URL = 'https://us.api.battle.net'
+API_BASE_URL = 'https://us.api.blizzard.com'
 API_NAMESPACE = 's2-client-replays'
 
 
@@ -26,6 +26,8 @@ class BnetAPI(object):
             "client_secret" : secret,
         }
         response = requests.post("https://us.battle.net/oauth/token", headers=headers, params=params)
+        if response.status_code != 200:
+            raise Exception('Failed to get oauth access token. response={}'.format(response))
         response = json.loads(response.text)
         if 'access_token' in response:
             self._token = response['access_token']
@@ -37,7 +39,12 @@ class BnetAPI(object):
         params['namespace'] = API_NAMESPACE,
         headers = {"Authorization": "Bearer " + self._token}
         response = requests.get(url, headers=headers, params=params)
-        return json.loads(response.text)
+        if response.status_code != 200:
+            raise Exception("Request to '{}' failed. response={}".format(url, response))
+        response_json = json.loads(response.text)
+        if response_json.get('status') == 'nok':
+            raise Exception("Request to '{}' failed. response={}".format(url, response_json.get("reason")))
+        return response_json
 
     def url(self, path):
         return requests.compat.urljoin(API_BASE_URL, path)
@@ -46,15 +53,21 @@ class BnetAPI(object):
         return self.get(self.url("/data/sc2/archive_url/base_url"))["base_url"]
 
     def search_by_client_version(self, client_version):
-        params = {
-            'client_version' : client_version,
-            '_pageSize' : 100,
-        }
-        response = self.get(self.url("/data/sc2/search/archive"), params)
         meta_urls = []
-        for result in response['results']:
-            assert result['data']['client_version'] == client_version
-            meta_urls.append(result['key']['href'])
+        page = 1
+        while True:
+            params = {
+                'client_version': client_version,
+                '_pageSize': 100,
+                '_page': page,
+            }
+            response = self.get(self.url("/data/sc2/search/archive"), params)
+            for result in response['results']:
+                assert result['data']['client_version'] == client_version
+                meta_urls.append(result['key']['href'])
+            if response["pageCount"] <= page:
+                break
+            page += 1
         return meta_urls
 
 
@@ -80,9 +93,6 @@ def main():
     # Get OAuth token from us region
     api = BnetAPI(args.key, args.secret)
 
-    # Get the base url for downloading replay packs
-    download_base_url = api.get_base_url()
-
     # Get meta file infos for the give client version
     print('Searching replay packs with client version:', args.version)
     meta_file_urls = api.search_by_client_version(args.version)
@@ -92,6 +102,7 @@ def main():
 
     # For each meta file, construct full url to download replay packs
     print('Building urls for downloading replay packs. Number of packs:', len(meta_file_urls))
+    download_base_url = api.get_base_url()
     download_urls = []
     for meta_file_url in meta_file_urls:
         meta_file_info = api.get(meta_file_url)
@@ -99,6 +110,7 @@ def main():
 
     # Download replay packs.
     files = []
+    print("Downloading to:", args.replays_dir)
     for archive_url in sorted(download_urls):
         print('Downloading replay pack:', archive_url)
         files.append(download_file(archive_url, args.replays_dir))
@@ -107,7 +119,8 @@ def main():
         for file in files:
             print('Extracting replay pack:', file)
             subprocess.call(['unzip', '-P', 'iagreetotheeula', '-o', '-d', os.path.dirname(file), file])
-            os.remove(file)
+            if args.remove:
+	            os.remove(file)
 
 
 def parse_args():
@@ -117,6 +130,7 @@ def parse_args():
     parser.add_argument('--version', required=True, help='Download all replays from this Starcraft2 game version.')
     parser.add_argument('--replays_dir', default='./replays', help='Where to save the replays.')
     parser.add_argument('--extract', action='store_true', help='Whether to extract the zip files.')
+    parser.add_argument('--remove', action='store_true', help='Whether to delete the zip files after extraction.')
     return parser.parse_args()
 
 
