@@ -21,11 +21,9 @@ class BnetAPI(object):
     def __init__(self, key, secret):
         headers = {"Content-Type": "application/json"}
         params = {
-            "grant_type": "client_credentials",
-            "client_id" : key,
-            "client_secret" : secret,
+            "grant_type": "client_credentials"
         }
-        response = requests.post("https://us.battle.net/oauth/token", headers=headers, params=params)
+        response = requests.post("https://us.battle.net/oauth/token", headers=headers, params=params, auth=requests.auth.HTTPBasicAuth(key, secret))
         if response.status_code != 200:
             raise Exception('Failed to get oauth access token. response={}'.format(response))
         response = json.loads(response.text)
