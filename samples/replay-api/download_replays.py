@@ -78,7 +78,7 @@ def download_file(url, output_dir):
 
     response = requests.get(url, stream=True)
     if (not os.path.exists(file_path) or
-        os.path.getsize(file_path) != int(response.headers['Content-Length'])):
+            os.path.getsize(file_path) != int(response.headers['Content-Length'])):
         with open(file_path, 'wb') as f:
             shutil.copyfileobj(response.raw, f)
 
@@ -118,7 +118,7 @@ def main():
             print('Extracting replay pack:', file)
             subprocess.call(['unzip', '-P', 'iagreetotheeula', '-o', '-d', os.path.dirname(file), file])
             if args.remove:
-	            os.remove(file)
+                os.remove(file)
 
 
 def parse_args():
@@ -133,4 +133,4 @@ def parse_args():
 
 
 if __name__ == '__main__':
-  main()
+    main()
