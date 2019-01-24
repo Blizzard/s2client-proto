@@ -98,25 +98,20 @@ def main():
         print('No matching replay packs found for the client version!')
         return
 
-    # For each meta file, construct full url to download replay packs
-    print('Building urls for downloading replay packs. Number of packs:', len(meta_file_urls))
-    download_base_url = api.get_base_url()
-    download_urls = []
-    for meta_file_url in meta_file_urls:
-        meta_file_info = api.get(meta_file_url)
-        download_urls.append(requests.compat.urljoin(download_base_url, meta_file_info['path']))
-
     # Download replay packs.
-    files = []
-    print("Downloading to:", args.replays_dir)
-    for archive_url in sorted(download_urls):
-        print('Downloading replay pack:', archive_url)
-        files.append(download_file(archive_url, args.replays_dir))
+    download_base_url = api.get_base_url()
+    print("Downloading {} replay packs to: {}".format(len(meta_file_urls), args.replays_dir))
+    for i, meta_file_url in enumerate(sorted(meta_file_urls), 1):
+        # Construct full url to download replay packs
+        meta_file_info = api.get(meta_file_url)
+        archive_url = requests.compat.urljoin(download_base_url, meta_file_info['path'])
 
-    if args.extract:
-        for file in files:
-            print('Extracting replay pack:', file)
-            subprocess.call(['unzip', '-P', 'iagreetotheeula', '-o', '-d', os.path.dirname(file), file])
+        print('{}/{} Downloading replay pack: {}'.format(i, len(meta_file_urls), archive_url))
+        file = download_file(archive_url, args.replays_dir)
+
+        if args.extract:
+            print('{}/{} Extracting replay pack: {}'.format(i, len(meta_file_urls), file))
+            subprocess.call(['unzip', '-P', 'iagreetotheeula', '-o', '-q', '-d', os.path.dirname(file), file])
             if args.remove:
                 os.remove(file)
 
