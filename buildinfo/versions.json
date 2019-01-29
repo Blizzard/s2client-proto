@@ -262,5 +262,29 @@
         "label": "4.7.1", 
         "replay-hash": "D74FBB3CB0897A3EE8F44E78119C4658", 
         "version": 70326
+    }, 
+    {
+        "base-version": 71061, 
+        "data-hash": "760581629FC458A1937A05ED8388725B", 
+        "fixed-hash": "815C099DF1A17577FDC186FDB1381B16", 
+        "label": "4.8", 
+        "replay-hash": "BD692311442926E1F0B7C17E9ABDA34B", 
+        "version": 71061
+    }, 
+    {
+        "base-version": 71523, 
+        "data-hash": "FCAF3F050B7C0CC7ADCF551B61B9B91E", 
+        "fixed-hash": "4593CC331691620509983E92180A309A", 
+        "label": "4.8.1", 
+        "replay-hash": "BD692311442926E1F0B7C17E9ABDA34B", 
+        "version": 71523
+    }, 
+    {
+        "base-version": 71663, 
+        "data-hash": "FE90C92716FC6F8F04B74268EC369FA5", 
+        "fixed-hash": "1DBF3819F3A7367592648632CC0D5BFD", 
+        "label": "4.8.2", 
+        "replay-hash": "E43A9885B3EFAE3D623091485ECCCB6C", 
+        "version": 71663
     }
 ]
