@@ -32,6 +32,9 @@ message UnitInfo {
   optional int32 transport_slots_taken = 6;
   optional float build_progress = 7;    // Range: [0.0, 1.0]
   optional UnitInfo add_on = 8;
+  optional int32 max_health = 9;
+  optional int32 max_shields = 10;
+  optional int32 max_energy = 11;
 }
 
 message SinglePanel {
