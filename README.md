@@ -76,7 +76,6 @@ The files are password protected with the password 'iagreetotheeula'.
 
 ## Map Packs
 
-We added a map that was missing from the Ladder 2017 Season 3 Map Pack.
 * [Ladder 2017 Season 1](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season1.zip)
 * [Ladder 2017 Season 2](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season2.zip)
 * [Ladder 2017 Season 3 Updated](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season3_Updated.zip)
