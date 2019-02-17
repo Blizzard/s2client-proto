@@ -32,6 +32,11 @@ message FeatureLayers {
   optional ImageData unit_density_aa = 14;          // uint8. Density of units overlapping a pixel, anti-aliased. [0.0, 16.0f] encoded into [0, 255].
   optional ImageData unit_density = 15;             // uint8. Count of units overlapping a pixel.
   optional ImageData effects = 20;                  // uint8. Visuals of persistent abilities. (eg. Psistorm)
+  optional ImageData hallucinations = 21;           // 1-bit. Whether the unit here is a hallucination.
+  optional ImageData cloaked = 22;                  // 1-bit. Whether the unit here is cloaked. Hidden units will show up too, but with less details in other layers.
+  optional ImageData blip = 23;                     // 1-bit. Whether the unit here is a blip.
+  optional ImageData buffs = 24;                    // int32. One of the buffs applied to this unit. Extras are ignored.
+  optional ImageData active = 25;                   // 1-bit. Whether the unit here is active.
 }
 
 message FeatureLayersMinimap {
@@ -42,6 +47,7 @@ message FeatureLayersMinimap {
   optional ImageData player_id = 5;                 // uint8. Participants: [1, 15] Neutral: 16
   optional ImageData player_relative = 6;           // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
   optional ImageData selected = 7;                  // 1-bit. Selected units.
+  optional ImageData alerts = 9;                    // 1-bit. Shows 'UnitAttacked' alert location.
 
   // Cheat layers. Only populated in replays.
   optional ImageData unit_type = 8;                 // int32. Unique identifier for type of unit.

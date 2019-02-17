@@ -66,9 +66,11 @@ enum Alliance {
 }
 
 enum CloakState {
+  CloakedUnknown = 0;  // Under the fog, so unknown whether it's cloaked or not.
   Cloaked = 1;
   CloakedDetected = 2;
   NotCloaked = 3;
+  CloakedAllied = 4;
 }
 
 message PassengerUnit {
@@ -96,6 +98,7 @@ message Unit {
   optional float radius = 8;
   optional float build_progress = 9;        // Range: [0.0, 1.0]
   optional CloakState cloak = 10;
+  repeated uint32 buff_ids = 27;
 
   optional float detect_range = 31;
   optional float radar_range = 32;
@@ -104,6 +107,7 @@ message Unit {
   optional bool is_on_screen = 12;          // Visible and within the camera frustrum.
   optional bool is_blip = 13;               // Detected by sensor tower
   optional bool is_powered = 35;
+  optional bool is_active = 39;             // Building is training/researching (ie animated).
 
   // Not populated for snapshots
   optional float health = 14;
@@ -116,6 +120,7 @@ message Unit {
   optional int32 vespene_contents = 19;
   optional bool is_flying = 20;
   optional bool is_burrowed = 21;
+  optional bool is_hallucination = 38;      // Unit is your own or detected as a hallucination.
 
   // Not populated for enemies
   repeated UnitOrder orders = 22;
@@ -123,7 +128,6 @@ message Unit {
   repeated PassengerUnit passengers = 24;
   optional int32 cargo_space_taken = 25;
   optional int32 cargo_space_max = 26;
-  repeated uint32 buff_ids = 27;          // TODO: Should this be populated for enemies?
   optional int32 assigned_harvesters = 28;
   optional int32 ideal_harvesters = 29;
   optional float weapon_cooldown = 30;
@@ -142,6 +146,9 @@ message Event {
 message Effect {
   optional uint32 effect_id = 1;
   repeated Point2D pos = 2;                     // Effect may impact multiple locations. (eg. Lurker attack)
+  optional Alliance alliance = 3;
+  optional int32 owner = 4;
+  optional float radius = 5;
 }
 
 
