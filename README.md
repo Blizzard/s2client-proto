@@ -48,7 +48,7 @@ The API is available in the retail Windows and Mac clients. There are also Linux
   * [Website](http://wiki.sc2ai.net/Main_Page)
 * **Discord Server**
   * Unofficial server for discussing AI questions and projects.
-  * [Invite Link](https://discord.gg/qTZ65sh)
+  * [Invite Link](https://discord.gg/BH58ZVt)
 * **Facebook Group**
   * Unofficial community page.
   * [Website](https://www.facebook.com/groups/969196249883813/)
