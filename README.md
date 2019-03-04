@@ -122,3 +122,11 @@ Standard folder layout:
 ## Replay Packs
 * Replace the "Battle.net" and "Replays" folders with the ones in the zip file.
 * In the API, a replay must be specified as an absolute path.
+
+## Stable IDs
+
+These define the action mappings from ability ids in the protobuf api to the internals of the game.
+They also define some general ids that combine multiple abilities that have a similar semantic meaning
+(eg various forms of burrow, cancel, lift/land, etc). The `stableid.json` is updated occasionally with
+the game, but can also be updated manually by downloading the `stableid.json` from here and placing it
+in the root of your `StarCraft II` directory.
