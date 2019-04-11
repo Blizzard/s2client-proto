@@ -39,8 +39,10 @@ message UnitInfo {
 
 message SinglePanel {
   optional UnitInfo unit = 1;
-  // Upgrades?
-  // Buffs?
+  optional int32 attack_upgrade_level = 2;
+  optional int32 armor_upgrade_level = 3;
+  optional int32 shield_upgrade_level = 4;
+  repeated int32 buffs = 5;
 }
 
 message MultiPanel {
