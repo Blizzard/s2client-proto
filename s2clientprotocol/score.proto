@@ -68,7 +68,7 @@ message ScoreDetails {
 
   // Sum of food, or supply, utilized in the categories above.
   optional CategoryScoreDetails food_used = 13;
-  
+
   // Sum of enemies catagories destroyed in minerals.
   optional CategoryScoreDetails killed_minerals = 14;
   // Sum of enemies catagories destroyed in vespene.
