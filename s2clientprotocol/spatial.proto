@@ -41,6 +41,7 @@ message FeatureLayers {
   optional ImageData build_progress = 27;           // uint8. How far along the building is building something. [0%, 100%] encoded into [0, 255].
   optional ImageData buildable = 28;                // 1-bit. Whether a building can be built here.
   optional ImageData pathable = 29;                 // 1-bit. Whether a unit can walk here.
+  optional ImageData placeholder = 30;              // 1-bit. Whether the unit here is a placeholder building to be constructed.
 }
 
 message FeatureLayersMinimap {
