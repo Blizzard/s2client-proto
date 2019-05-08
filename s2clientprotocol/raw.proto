@@ -11,9 +11,9 @@ import "s2clientprotocol/common.proto";
 
 message StartRaw {
   optional Size2DI map_size = 1;            // Width and height of the map.
-  optional ImageData pathing_grid = 2;      // 1 byte bitmap of the pathing grid.
+  optional ImageData pathing_grid = 2;      // 1 bit bitmap of the pathing grid.
   optional ImageData terrain_height = 3;    // 1 byte bitmap of the terrain height.
-  optional ImageData placement_grid = 4;    // 1 byte bitmap of the building placement grid.
+  optional ImageData placement_grid = 4;    // 1 bit bitmap of the building placement grid.
   optional RectangleI playable_area = 5;    // The playable cells.
   repeated Point2D start_locations = 6;     // Possible start locations for players.
 }
@@ -56,6 +56,7 @@ enum DisplayType {
   Visible = 1;                            // Fully visible
   Snapshot = 2;                           // Dimmed version of unit left behind after entering fog of war
   Hidden = 3;                             // Fully hidden
+  Placeholder = 4;                        // Building that hasn't started construction.
 }
 
 enum Alliance {
@@ -82,6 +83,11 @@ message PassengerUnit {
   optional float energy = 5;
   optional float energy_max = 8;
   optional uint32 unit_type = 6;
+}
+
+message RallyTarget {
+  optional Point point = 1;  // Will always be filled.
+  optional uint64 tag = 2;   // Only if it's targeting a unit.
 }
 
 message Unit {
@@ -137,11 +143,12 @@ message Unit {
   optional uint64 engaged_target_tag = 34;
   optional int32 buff_duration_remain = 43;  // How long a buff or unit is still around (eg mule, broodling, chronoboost).
   optional int32 buff_duration_max = 44;     // How long the buff or unit is still around (eg mule, broodling, chronoboost).
+  repeated RallyTarget rally_targets = 45;
 }
 
 message MapState {
   optional ImageData visibility = 1;            // 1 byte visibility layer.
-  optional ImageData creep = 2;                 // 1 byte creep layer.
+  optional ImageData creep = 2;                 // 1 bit creep layer.
 }
 
 message Event {
