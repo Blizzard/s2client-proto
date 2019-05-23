@@ -141,6 +141,8 @@ def main():
             with open(file_path) as fd:
                 try:
                     archive = mpyq.MPQArchive(fd).extract()
+                except KeyboardInterrupt:
+                  return
                 except:
                     found_versions['corrupt'] += 1
                     os.remove(file_path)
