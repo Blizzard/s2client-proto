@@ -138,7 +138,7 @@ def main():
             if i % 100 == 0:
                 print_part('\r%s/%s: %d%%, found: %s' % (i, len(all_replays), 100 * i / len(all_replays), found_str()))
             file_path = os.path.join(args.replays_dir, file_name)
-            with open(file_path) as fd:
+            with open(file_path, "rb") as fd:
                 try:
                     archive = mpyq.MPQArchive(fd).extract()
                 except:
