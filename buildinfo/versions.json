@@ -318,5 +318,13 @@
         "label": "4.8.6", 
         "replay-hash": "147388D35E76861BD4F590F8CC5B7B0B", 
         "version": 73620
+    },
+    {
+        "base-version": 74071,
+        "data-hash": "70C74A2DCA8A0D8E7AE8647CAC68ACCA", 
+        "fixed-hash": "C4A3F01B4753245296DC94BC1B5E9B36", 
+        "label": "4.9", 
+        "replay-hash": "19D15E5391FACB379BFCA262CA8FD208", 
+        "version": 74071
     }
 ]
