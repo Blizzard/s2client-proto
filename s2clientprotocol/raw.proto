@@ -29,6 +29,12 @@ message ObservationRaw {
   optional MapState map_state = 3;                // Fog of war, creep and so on. Board stuff that changes per frame.
   optional Event event = 4;
   repeated Effect effects = 5;
+  repeated RadarRing radar = 6;
+}
+
+message RadarRing {
+  optional Point pos = 1;
+  optional float radius = 2;
 }
 
 message PowerSource {
