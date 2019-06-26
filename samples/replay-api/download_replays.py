@@ -36,7 +36,7 @@ class BnetAPI(object):
             "grant_type": "client_credentials"
         }
         response = requests.post("https://us.battle.net/oauth/token", headers=headers, params=params, auth=requests.auth.HTTPBasicAuth(key, secret))
-        if response.status_code != 200:
+        if response.status_code != requests.codes.ok:
             raise Exception('Failed to get oauth access token. response={}'.format(response))
         response = json.loads(response.text)
         if 'access_token' in response:
@@ -49,7 +49,7 @@ class BnetAPI(object):
         params['namespace'] = API_NAMESPACE,
         headers = {"Authorization": "Bearer " + self._token}
         response = requests.get(url, headers=headers, params=params)
-        if response.status_code != 200:
+        if response.status_code != requests.codes.ok:
             raise Exception("Request to '{}' failed. response={}".format(url, response))
         response_json = json.loads(response.text)
         if response_json.get('status') == 'nok':
@@ -121,7 +121,7 @@ def main():
 
         if args.extract:
             print_part(' ... extracting')
-            if os.path.getsize(file_path) <= 22:
+            if os.path.getsize(file_path) <= 22:  # Size of an empty zip file.
                 print_part(' ... zip file is empty')
             else:
                 subprocess.call(['unzip', '-P', 'iagreetotheeula', '-u', '-o', '-q', '-d', args.replays_dir, file_path])
