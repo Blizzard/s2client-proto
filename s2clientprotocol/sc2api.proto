@@ -36,7 +36,7 @@ import "s2clientprotocol/ui.proto";
 //                  | ended (singleplayer only)                         | init_game             |
 // join_game*       | init_game (singleplayer or multiplayer host only) | in_game               |
 //                  | launched (multiplayer client only)                | in_game               |
-// restart_game     | ended (singleplayer only)                         | in_game               |
+// restart_game     | ended                                             | in_game               |
 // start_replay     | launched                                          | in_replay             |
 //                  | ended (singleplayer only)                         |                       |
 // leave_game       | in_game (required when finishing multiplayer)     | launched              |
@@ -277,6 +277,7 @@ message RequestStartReplay {
 
   optional bool disable_fog = 4;
   optional bool realtime = 7;
+  optional bool record_replay = 8;  // Allow RequestSaveReplay from a replay. Useful for truncating a replay, or restoring tracker.events.
 }
 
 message ResponseStartReplay {
