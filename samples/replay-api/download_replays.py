@@ -26,6 +26,10 @@ API_BASE_URL = 'https://us.api.blizzard.com'
 API_NAMESPACE = 's2-client-replays'
 
 
+class RequestError(Exception):
+  pass
+
+
 def mkdirs(path):
     if not os.path.exists(path):
         os.makedirs(path)
@@ -44,12 +48,12 @@ class BnetAPI(object):
         }
         response = requests.post("https://us.battle.net/oauth/token", headers=headers, params=params, auth=requests.auth.HTTPBasicAuth(key, secret))
         if response.status_code != requests.codes.ok:
-            raise Exception('Failed to get oauth access token. response={}'.format(response))
+            raise RequestError('Failed to get oauth access token. response={}'.format(response))
         response = json.loads(response.text)
         if 'access_token' in response:
             self._token = response['access_token']
         else:
-            raise Exception('Failed to get oauth access token. response={}'.format(response))
+            raise RequestError('Failed to get oauth access token. response={}'.format(response))
 
     def get(self, url, params=None):
         params = params or {}
@@ -57,10 +61,10 @@ class BnetAPI(object):
         headers = {"Authorization": "Bearer " + self._token}
         response = requests.get(url, headers=headers, params=params)
         if response.status_code != requests.codes.ok:
-            raise Exception("Request to '{}' failed. response={}".format(url, response))
+            raise RequestError("Request to '{}' failed. response={}".format(url, response))
         response_json = json.loads(response.text)
         if response_json.get('status') == 'nok':
-            raise Exception("Request to '{}' failed. response={}".format(url, response_json.get("reason")))
+            raise RequestError("Request to '{}' failed. response={}".format(url, response_json.get("reason")))
         return response_json
 
     def url(self, path):
