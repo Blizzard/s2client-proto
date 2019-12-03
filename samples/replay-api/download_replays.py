@@ -151,13 +151,13 @@ def download(key, secret, version, replays_dir, download_dir, extract=False,
             with open(file_path, "rb") as fd:
                 try:
                     archive = mpyq.MPQArchive(fd).extract()
+                    metadata = json.loads(archive[b'replay.gamemetadata.json'].decode('utf-8'))
                 except KeyboardInterrupt:
                   return
                 except:
                     found_versions['corrupt'] += 1
                     os.remove(file_path)
                     continue
-            metadata = json.loads(archive[b'replay.gamemetadata.json'].decode('utf-8'))
             game_version = '.'.join(metadata['GameVersion'].split('.')[:-1])
             found_versions[game_version] += 1
             if filter_version == 'sort':
