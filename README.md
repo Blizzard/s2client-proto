@@ -42,7 +42,7 @@ The API is available in the retail Windows and Mac clients. There are also Linux
   * [Repository](https://github.com/davechurchill/CommandCenter)
 * **Bot Ladders**
   * [SC2AI](http://sc2ai.net/) - Unofficial community organized ladder.
-  * [AI Arena](http://ai-arena.net/) - Unofficial community organized ladder.
+  * [AI Arena](http://aiarena.net/) - Unofficial community organized ladder.
 * **Community Wiki**
   * Unofficial wiki of documentation and tutorials.
   * [Website](http://wiki.sc2ai.net/Main_Page)
