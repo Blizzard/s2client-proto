@@ -32,12 +32,17 @@ message UnitInfo {
   optional int32 transport_slots_taken = 6;
   optional float build_progress = 7;    // Range: [0.0, 1.0]
   optional UnitInfo add_on = 8;
+  optional int32 max_health = 9;
+  optional int32 max_shields = 10;
+  optional int32 max_energy = 11;
 }
 
 message SinglePanel {
   optional UnitInfo unit = 1;
-  // Upgrades?
-  // Buffs?
+  optional int32 attack_upgrade_level = 2;
+  optional int32 armor_upgrade_level = 3;
+  optional int32 shield_upgrade_level = 4;
+  repeated int32 buffs = 5;
 }
 
 message MultiPanel {
@@ -50,9 +55,18 @@ message CargoPanel {
   optional int32 slots_available = 3;       // TODO: Change to cargo size
 }
 
+message BuildItem {
+  optional uint32 ability_id = 1;
+  optional float build_progress = 2;    // Range: [0.0, 1.0]
+}
+
 message ProductionPanel {
   optional UnitInfo unit = 1;
+
+  // build_queue ONLY gives information about units that are being produced.
+  // Use production_queue instead to see both units being trained as well as research in the queue.
   repeated UnitInfo build_queue = 2;
+  repeated BuildItem production_queue = 3;
 }
 
 

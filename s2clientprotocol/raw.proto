@@ -11,9 +11,9 @@ import "s2clientprotocol/common.proto";
 
 message StartRaw {
   optional Size2DI map_size = 1;            // Width and height of the map.
-  optional ImageData pathing_grid = 2;      // 1 byte bitmap of the pathing grid.
+  optional ImageData pathing_grid = 2;      // 1 bit bitmap of the pathing grid.
   optional ImageData terrain_height = 3;    // 1 byte bitmap of the terrain height.
-  optional ImageData placement_grid = 4;    // 1 byte bitmap of the building placement grid.
+  optional ImageData placement_grid = 4;    // 1 bit bitmap of the building placement grid.
   optional RectangleI playable_area = 5;    // The playable cells.
   repeated Point2D start_locations = 6;     // Possible start locations for players.
 }
@@ -29,6 +29,12 @@ message ObservationRaw {
   optional MapState map_state = 3;                // Fog of war, creep and so on. Board stuff that changes per frame.
   optional Event event = 4;
   repeated Effect effects = 5;
+  repeated RadarRing radar = 6;
+}
+
+message RadarRing {
+  optional Point pos = 1;
+  optional float radius = 2;
 }
 
 message PowerSource {
@@ -56,6 +62,7 @@ enum DisplayType {
   Visible = 1;                            // Fully visible
   Snapshot = 2;                           // Dimmed version of unit left behind after entering fog of war
   Hidden = 3;                             // Fully hidden
+  Placeholder = 4;                        // Building that hasn't started construction.
 }
 
 enum Alliance {
@@ -66,9 +73,11 @@ enum Alliance {
 }
 
 enum CloakState {
+  CloakedUnknown = 0;  // Under the fog, so unknown whether it's cloaked or not.
   Cloaked = 1;
   CloakedDetected = 2;
   NotCloaked = 3;
+  CloakedAllied = 4;
 }
 
 message PassengerUnit {
@@ -80,6 +89,11 @@ message PassengerUnit {
   optional float energy = 5;
   optional float energy_max = 8;
   optional uint32 unit_type = 6;
+}
+
+message RallyTarget {
+  optional Point point = 1;  // Will always be filled.
+  optional uint64 tag = 2;   // Only if it's targeting a unit.
 }
 
 message Unit {
@@ -96,6 +110,7 @@ message Unit {
   optional float radius = 8;
   optional float build_progress = 9;        // Range: [0.0, 1.0]
   optional CloakState cloak = 10;
+  repeated uint32 buff_ids = 27;
 
   optional float detect_range = 31;
   optional float radar_range = 32;
@@ -104,6 +119,10 @@ message Unit {
   optional bool is_on_screen = 12;          // Visible and within the camera frustrum.
   optional bool is_blip = 13;               // Detected by sensor tower
   optional bool is_powered = 35;
+  optional bool is_active = 39;             // Building is training/researching (ie animated).
+  optional int32 attack_upgrade_level = 40;
+  optional int32 armor_upgrade_level = 41;
+  optional int32 shield_upgrade_level = 42;
 
   // Not populated for snapshots
   optional float health = 14;
@@ -116,6 +135,7 @@ message Unit {
   optional int32 vespene_contents = 19;
   optional bool is_flying = 20;
   optional bool is_burrowed = 21;
+  optional bool is_hallucination = 38;      // Unit is your own or detected as a hallucination.
 
   // Not populated for enemies
   repeated UnitOrder orders = 22;
@@ -123,16 +143,18 @@ message Unit {
   repeated PassengerUnit passengers = 24;
   optional int32 cargo_space_taken = 25;
   optional int32 cargo_space_max = 26;
-  repeated uint32 buff_ids = 27;          // TODO: Should this be populated for enemies?
   optional int32 assigned_harvesters = 28;
   optional int32 ideal_harvesters = 29;
   optional float weapon_cooldown = 30;
   optional uint64 engaged_target_tag = 34;
+  optional int32 buff_duration_remain = 43;  // How long a buff or unit is still around (eg mule, broodling, chronoboost).
+  optional int32 buff_duration_max = 44;     // How long the buff or unit is still around (eg mule, broodling, chronoboost).
+  repeated RallyTarget rally_targets = 45;
 }
 
 message MapState {
   optional ImageData visibility = 1;            // 1 byte visibility layer.
-  optional ImageData creep = 2;                 // 1 byte creep layer.
+  optional ImageData creep = 2;                 // 1 bit creep layer.
 }
 
 message Event {
@@ -142,6 +164,9 @@ message Event {
 message Effect {
   optional uint32 effect_id = 1;
   repeated Point2D pos = 2;                     // Effect may impact multiple locations. (eg. Lurker attack)
+  optional Alliance alliance = 3;
+  optional int32 owner = 4;
+  optional float radius = 5;
 }
 
 

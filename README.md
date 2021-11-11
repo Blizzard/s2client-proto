@@ -40,15 +40,15 @@ The API is available in the retail Windows and Mac clients. There are also Linux
 * **CommandCenter**
   * A robust architecture for quickly developing Starcraft AI bots.
   * [Repository](https://github.com/davechurchill/CommandCenter)
-* **Bot Ladder**
-  * Unofficial community organized ladder.
-  * [Website](http://sc2ai.net/)
+* **Bot Ladders**
+  * [SC2AI](http://sc2ai.net/) - Unofficial community organized ladder.
+  * [AI Arena](http://aiarena.net/) - Unofficial community organized ladder.
 * **Community Wiki**
   * Unofficial wiki of documentation and tutorials.
   * [Website](http://wiki.sc2ai.net/Main_Page)
 * **Discord Server**
   * Unofficial server for discussing AI questions and projects.
-  * [Invite Link](https://discord.gg/qTZ65sh)
+  * [Invite Link](https://discord.gg/BH58ZVt)
 * **Facebook Group**
   * Unofficial community page.
   * [Website](https://www.facebook.com/groups/969196249883813/)
@@ -68,15 +68,34 @@ The files are password protected with the password 'iagreetotheeula'.
 * [3.16.1](http://blzdistsc2-a.akamaihd.net/Linux/SC2.3.16.1.zip)
 * [4.0.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.0.2.zip)
 * [4.1.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.1.2.60604_2018_05_16.zip)
+* [4.6](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.6.0.67926.zip)
+* [4.6.1](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.6.1.68195.zip)
+* [4.6.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.6.2.69232.zip)
+* [4.7](http://blzdistsc2-a.akamaihd.net/Linux/SC2.AStar.4.7.zip) 
+* [4.7.1](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.7.1.zip) 
+* [4.8.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.8.2.zip) 
+* [4.8.3](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.8.3.zip) 
+* [4.8.4](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.8.4.zip) 
+* [4.8.6](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.8.6.zip) 
+* [4.9.0](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.9.0.zip) 
+* [4.9.1](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.9.1.zip) 
+* [4.9.2](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.9.2.zip) 
+* [4.9.3](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.9.3.zip) 
+* [4.10](http://blzdistsc2-a.akamaihd.net/Linux/SC2.4.10.zip) 
 
 ## Map Packs
 
-We added a map that was missing from the Ladder 2017 Season 3 Map Pack.
 * [Ladder 2017 Season 1](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season1.zip)
 * [Ladder 2017 Season 2](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season2.zip)
 * [Ladder 2017 Season 3 Updated](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season3_Updated.zip)
 * [Ladder 2017 Season 4](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2017Season4.zip)
 * [Ladder 2018 Season 1](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season1.zip)
+* [Ladder 2018 Season 2](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season2_Updated.zip)
+* [Ladder 2018 Season 3](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season3.zip)
+* [Ladder 2018 Season 4](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2018Season4.zip)
+* [Ladder 2019 Season 1](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season1.zip)
+* [Ladder 2019 Season 2](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season2.zip)
+* [Ladder 2019 Season 3](http://blzdistsc2-a.akamaihd.net/MapPacks/Ladder2019Season3.zip)
 * [Melee](http://blzdistsc2-a.akamaihd.net/MapPacks/Melee.zip)
 
 This is the previous version of the Ladder 2017 Season 3 Map Pack
@@ -114,3 +133,11 @@ Standard folder layout:
 ## Replay Packs
 * Replace the "Battle.net" and "Replays" folders with the ones in the zip file.
 * In the API, a replay must be specified as an absolute path.
+
+## Stable IDs
+
+These define the action mappings from ability ids in the protobuf api to the internals of the game.
+They also define some general ids that combine multiple abilities that have a similar semantic meaning
+(eg various forms of burrow, cancel, lift/land, etc). The `stableid.json` is updated occasionally with
+the game, but can also be updated manually by downloading the `stableid.json` from here and placing it
+in the root of your `StarCraft II` directory.
