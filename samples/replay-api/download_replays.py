@@ -9,6 +9,7 @@ from __future__ import print_function
 
 import argparse
 import collections
+import csv
 import itertools
 import json
 import logging
@@ -17,6 +18,7 @@ import requests
 import shutil
 import subprocess
 import sys
+import zipfile
 
 try:
     import mpyq
@@ -103,8 +105,8 @@ class BnetAPI(object):
 
 
 def download(key, secret, version, replays_dir, download_dir, extract=False,
-             remove=False, filter_version='keep'):
-    """Download the replays for a specific vesion. Check help below."""
+             remove=False, filter_version='keep', replayset_csv=None):
+    """Download the replays for a specific version. Check help below."""
     # Get OAuth token from us region
     api = BnetAPI(key, secret)
 
@@ -113,6 +115,17 @@ def download(key, secret, version, replays_dir, download_dir, extract=False,
     meta_file_urls = api.search_by_client_version(version)
     if len(meta_file_urls) == 0:
         sys.exit('No matching replay packs found for the client version!')
+
+    # Parse replayset.
+    if replayset_csv is not None:
+        files = []
+        with open(replayset_csv, 'r') as csv_file:
+            for row in csv.reader(csv_file):
+                if row[0] == version:
+                    files.append(row[1] + '.SC2Replay')
+        files = set(files)
+    else:
+        files = None
 
     # Download replay packs.
     download_base_url = api.get_base_url()
@@ -146,6 +159,12 @@ def download(key, secret, version, replays_dir, download_dir, extract=False,
             print_part(' ... extracting')
             if os.path.getsize(file_path) <= 22:  # Size of an empty zip file.
                 print_part(' ... zip file is empty')
+            elif files:
+               with zipfile.ZipFile(file_path) as zip_file:
+                   for member in zip_file.namelist():
+                       if member in files:
+                           zip_file.extract(
+                               member, path=replays_dir, pwd=b'iagreetotheeula')
             else:
                 subprocess.call(['unzip', '-P', 'iagreetotheeula', '-u', '-o',
                                  '-q', '-d', replays_dir, file_path])
@@ -210,6 +229,10 @@ def main():
                               "filtering. Delete deletes any that don't match. "
                               "Sort puts them in sub-directories based on "
                               "their version."))
+    parser.add_argument('--replayset_csv', default=None,
+                        help=("Path to a csv file containing version, replay hash. "
+                              "If specified, only those replays listed for the "
+                              "requested game version will be extracted."))
     args = parser.parse_args()
     args_dict = dict(vars(args).items())
     download(**args_dict)
