@@ -59,7 +59,7 @@ message ScoreDetails {
   // Sum of spent vespene at the moment it is spent. For example, this number is incremented by 50 when a reaper is queued but decremented by 50 if it is canceled.
   optional float spent_vespene = 12;
 
-  // The following entries contains floating point values for the following catgories:
+  // The following entries contains floating point values for the following categories:
   //   none - There is no category defined in game data.
   //   army - This category includes all military units but not workers.
   //   economy - This category contains town halls, supply structures, vespene buildings and workers.
