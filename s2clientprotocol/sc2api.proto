@@ -86,7 +86,7 @@ message Request {
     // Game Setup
     RequestCreateGame create_game = 1;          // Send to host to initialize game.
     RequestJoinGame join_game = 2;              // Send to host and all clients for game to begin.
-    RequestRestartGame restart_game = 3;        // Single player only. Reinitializes the game with the same player setup.
+    RequestRestartGame restart_game = 3;        // Single player only. Re-initializes the game with the same player setup.
     RequestStartReplay start_replay = 4;        // Start playing a replay.
     RequestLeaveGame leave_game = 5;            // Multiplayer only. Disconnects from a multiplayer game, equivalent to surrender.
 
@@ -223,7 +223,7 @@ message RequestJoinGame {
 }
 
 message PortSet {
-  optional int32 game_port = 1;             // Game right now needs two internal ports to establish a multiplay game on the local host.
+  optional int32 game_port = 1;             // Game right now needs two internal ports to establish a multiplayer game on the local host.
   optional int32 base_port = 2;
 }
 

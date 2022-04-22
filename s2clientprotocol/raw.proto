@@ -147,8 +147,8 @@ message Unit {
   optional int32 ideal_harvesters = 29;
   optional float weapon_cooldown = 30;
   optional uint64 engaged_target_tag = 34;
-  optional int32 buff_duration_remain = 43;  // How long a buff or unit is still around (eg mule, broodling, chronoboost).
-  optional int32 buff_duration_max = 44;     // How long the buff or unit is still around (eg mule, broodling, chronoboost).
+  optional int32 buff_duration_remain = 43;  // How long a buff or unit is still around (e.g. MULE, Broodling, Chrono Boost).
+  optional int32 buff_duration_max = 44;     // How long the buff or unit is still around (e.g. MULE, Broodling, Chrono Boost).
   repeated RallyTarget rally_targets = 45;
 }
 
@@ -163,7 +163,7 @@ message Event {
 
 message Effect {
   optional uint32 effect_id = 1;
-  repeated Point2D pos = 2;                     // Effect may impact multiple locations. (eg. Lurker attack)
+  repeated Point2D pos = 2;                     // Effect may impact multiple locations. (e.g. Lurker attack)
   optional Alliance alliance = 3;
   optional int32 owner = 4;
   optional float radius = 5;

@@ -31,7 +31,7 @@ message FeatureLayers {
   optional ImageData player_relative = 11;          // uint8. See "Alliance" enum in raw.proto. Range: [1, 4] 
   optional ImageData unit_density_aa = 14;          // uint8. Density of units overlapping a pixel, anti-aliased. [0.0, 16.0f] encoded into [0, 255].
   optional ImageData unit_density = 15;             // uint8. Count of units overlapping a pixel.
-  optional ImageData effects = 20;                  // uint8. Visuals of persistent abilities. (eg. Psistorm)
+  optional ImageData effects = 20;                  // uint8. Visuals of persistent abilities. (e.g. Psionic Storm)
   optional ImageData hallucinations = 21;           // 1-bit. Whether the unit here is a hallucination.
   optional ImageData cloaked = 22;                  // 1-bit. Whether the unit here is cloaked. Hidden units will show up too, but with less details in other layers.
   optional ImageData blip = 23;                     // 1-bit. Whether the unit here is a blip.

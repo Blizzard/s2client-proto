@@ -98,7 +98,7 @@ message ScoreDetails {
   optional VitalScoreDetails total_damage_dealt = 24;
   // Sum of damage taken by the player for each category.
   optional VitalScoreDetails total_damage_taken = 25;
-  // Sum of health healed by the player. Note that technology can be healed (by queens) or repaired (by scvs).
+  // Sum of health healed by the player. Note that technology can be healed (by queens) or repaired (by SCVs).
   optional VitalScoreDetails total_healed = 26;
 
   // Recent raw APM.
