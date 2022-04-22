@@ -24,7 +24,7 @@ import "s2clientprotocol/ui.proto";
 //    2) Designate a host, and Request.create_game with a multiplayer map.
 //    3) Call Request.join on BOTH clients. Join will block until both clients connect.
 //    4) Wait for a response from both clients. They can now play/step.
-//    5) Steps should be syncronized. One client may time out if they are not. Multiple step sizes are ok.
+//    5) Steps should be synchronized. One client may time out if they are not. Multiple step sizes are ok.
 //    4) Call Request.leave at any point or when the game ends. Observations will not be valid after this.
 //
 // States:
