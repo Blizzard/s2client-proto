@@ -84,14 +84,14 @@ message ScoreDetails {
   // Sum of the lost vespene via destroying the players own units/buildings.
   optional CategoryScoreDetails friendly_fire_vespene = 19;
 
-  // Sum of used minerals for the player in each category for each existing unit or upgrade. Therefore if a unit died worth 50 mierals this number will be decremented by 50.
+  // Sum of used minerals for the player in each category for each existing unit or upgrade. Therefore if a unit died worth 50 minerals this number will be decremented by 50.
   optional CategoryScoreDetails used_minerals = 20;
   // Sum of used vespene for the player in each category. Therefore if a unit died worth 50 vespene this number will be decremented by 50.
   optional CategoryScoreDetails used_vespene = 21;
 
-  // Sum of used minerals throughout the entire game for each category. Unliked used_minerals, this value is never decremented.
+  // Sum of used minerals throughout the entire game for each category. Unlike used_minerals, this value is never decremented.
   optional CategoryScoreDetails total_used_minerals = 22;
-  // Sum of used vespene throughout the entire game for each category. Unliked used_vespene, this value is never decremented.
+  // Sum of used vespene throughout the entire game for each category. Unlike used_vespene, this value is never decremented.
   optional CategoryScoreDetails total_used_vespene = 23;
 
   // Sum of damage dealt to the player's opponent for each category.
