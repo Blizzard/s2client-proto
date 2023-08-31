@@ -116,7 +116,7 @@ The default installation directories are:
 
 On Linux, the installation directory is the folder you extracted the linux package into.
 
-The folder structure is the same accross all platforms. However you may need to create some folders if they are missing.
+The folder structure is the same across all platforms. However you may need to create some folders if they are missing.
 
 Standard folder layout:
 * StarCraft II/

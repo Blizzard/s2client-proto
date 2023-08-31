@@ -152,9 +152,9 @@ This is designed to be the simplest representation of human data that can be con
 
 The full set of functionality of the user interface is represented. However, functionally equivalent parts have been simplified. There are many ways for a human to move the camera, but in this interface it has been simplified to a single action.
 
-The only relevent protocol to this interface is **RequestObservation** and **RequestAction**.
+The only relevant protocol to this interface is **RequestObservation** and **RequestAction**.
 
-The game world and user interface are represented seperately. Both the observation and action have seperate sections for these two components.
+The game world and user interface are represented separately. Both the observation and action have separate sections for these two components.
 
 All positions are based on screen space coordinates. The upper left of the images are (0, 0).
 
@@ -203,7 +203,7 @@ You can retrieve a listing of what maps are locally cached by using **RequestAva
 
 The game needs all of the original map data in order to play back a replay.
 
-For ladder replays, all the dependencies will be automatially downloaded. ([Not true for linux](linux.md#battlenet-cache))
+For ladder replays, all the dependencies will be automatically downloaded. ([Not true for linux](linux.md#battlenet-cache))
 
 For offline game replays, the original .SC2Map file must be available to play back the replay. This can cause problems when sharing the replay between machines. The simplest workflow is to always store maps in the standard maps directory. This is done by creating a folder named "Maps" in the game install directory.
 
@@ -233,7 +233,7 @@ The order in which units update is also randomized. This makes it so that if two
 
 ## Inaccuracies of Actions
 
-When processing replays, the actions reported may not exactly line up with what occured in the original game.
+When processing replays, the actions reported may not exactly line up with what occurred in the original game.
 
 The protobuf protocol is slightly different than the internal replay format. This can cause slight inaccuracies when converting between these two formats.
 
@@ -252,7 +252,7 @@ Example:
 * For the APM score, every control group recall will be counted.
 * For the EPM score, only the last control group recall will be counted.
  
-Different action type incur a different ammount of APM "score":
+Different action type incur a different amount of APM "score":
 * Command with target = 2
 * Command with no target = 1
 * Selection action = 1
@@ -309,7 +309,7 @@ You can also get the version information of the binary itself using **RequestPin
 
 ## Downloading Data
 
-On Windows/Mac, only the Binary/Data for the latest patch is guarenteed to be downloaded.
+On Windows/Mac, only the Binary/Data for the latest patch is guaranteed to be downloaded.
 
 The solution to this is to launch the newest version of the game, and request it to download the required old data for you. This is exposed in the API with this field: RequestReplayInfo::download_data
 

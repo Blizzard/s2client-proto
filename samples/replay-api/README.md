@@ -7,7 +7,7 @@
     1. You can find them under the 'My Account' page after logging into the developer portal.
 
 ## Requirements
-The script is written in Python. Dependant packages can be installed via:
+The script is written in Python. Dependent packages can be installed via:
 ```
 pip install -r requirements.txt
 ```
