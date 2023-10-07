@@ -24,6 +24,8 @@ if 'PROTOC' in os.environ and os.path.exists(os.environ['PROTOC']):
 else:
   protoc = find_executable('protoc')
 
+mypy_plugin = find_executable('protoc-gen-mypy')
+
 
 def proto_files(root):
   """Yields the path of all .proto files under the root."""
@@ -37,9 +39,12 @@ def compile_proto(source, python_out, proto_path):
   """Invoke Protocol Compiler to generate python from given source .proto."""
   if not protoc:
     sys.exit('protoc not found. Is the protobuf-compiler installed?\n')
+  if not mypy_plugin:
+    sys.exit('mypy_plugin not found. Is it included in install_requires?\n')
 
   protoc_command = [
       protoc,
+      '--mypy_out', python_out,
       '--proto_path', proto_path,
       '--python_out', python_out,
       source,
@@ -72,6 +77,7 @@ setup(
     ],
     install_requires=[
         'protobuf',
+        'mypy-protobuf'
     ],
     cmdclass={
         'build_py': BuildPy,
