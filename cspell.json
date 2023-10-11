@@ -1,0 +1,31 @@
+{
+    "version": "0.2",
+    "words": [
+        "Autocast",
+        "battlenet",
+        "broodling",
+        "buildable",
+        "buildinfo",
+        "Chrono",
+        "clientprotocol",
+        "cooldown",
+        "eglpath",
+        "gameplay",
+        "iagreetotheeula",
+        "Mothership",
+        "Nydus",
+        "oneof",
+        "osmesapath",
+        "pathable",
+        "pathing",
+        "prepopulated",
+        "proto",
+        "Protobuf",
+        "Psionic",
+        "singleplayer",
+        "Singlestep",
+        "stableid",
+        "subfolders",
+        "vespene"
+    ]
+}
