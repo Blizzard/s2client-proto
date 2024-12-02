@@ -4,7 +4,7 @@ syntax = "proto2";
 package SC2APIProtocol;
 
 message AvailableAbility {
-  optional int32 ability_id = 1;
+  optional uint32 ability_id = 1;
   optional bool requires_point = 2;
 }
 
