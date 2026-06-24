@@ -213,7 +213,7 @@ def main():
     parser.add_argument('--secret', required=True, help='Battle.net API secret.')
     parser.add_argument('--version', required=True,
                         help=('Download all replays from this StarCraft 2 game'
-                              'version, eg: "4.8.3".'))
+                              'version, e.g. "4.8.3".'))
     parser.add_argument('--replays_dir', default='./replays',
                         help='Where to save the replays.')
     parser.add_argument('--download_dir', default='./download',

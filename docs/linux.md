@@ -24,7 +24,7 @@ Optional:
 * **verbose**
     * Enables logging of all protocol requests/responses to std::err.
 * **eglpath**
-    * Sets the path the to harware rendering library.
+    * Sets the path the to hardware rendering library.
     * Required for using the rendered interface with hardware rendering
     * Example: /usr/lib/nvidia-384/libEGL.so
 * **osmesapath**

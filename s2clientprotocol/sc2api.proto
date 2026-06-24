@@ -24,7 +24,7 @@ import "s2clientprotocol/ui.proto";
 //    2) Designate a host, and Request.create_game with a multiplayer map.
 //    3) Call Request.join on BOTH clients. Join will block until both clients connect.
 //    4) Wait for a response from both clients. They can now play/step.
-//    5) Steps should be syncronized. One client may time out if they are not. Multiple step sizes are ok.
+//    5) Steps should be synchronized. One client may time out if they are not. Multiple step sizes are ok.
 //    4) Call Request.leave at any point or when the game ends. Observations will not be valid after this.
 //
 // States:
@@ -86,7 +86,7 @@ message Request {
     // Game Setup
     RequestCreateGame create_game = 1;          // Send to host to initialize game.
     RequestJoinGame join_game = 2;              // Send to host and all clients for game to begin.
-    RequestRestartGame restart_game = 3;        // Single player only. Reinitializes the game with the same player setup.
+    RequestRestartGame restart_game = 3;        // Single player only. Re-initializes the game with the same player setup.
     RequestStartReplay start_replay = 4;        // Start playing a replay.
     RequestLeaveGame leave_game = 5;            // Multiplayer only. Disconnects from a multiplayer game, equivalent to surrender.
 
@@ -223,7 +223,7 @@ message RequestJoinGame {
 }
 
 message PortSet {
-  optional int32 game_port = 1;             // Game right now needs two internal ports to establish a multiplay game on the local host.
+  optional int32 game_port = 1;             // Game right now needs two internal ports to establish a multiplayer game on the local host.
   optional int32 base_port = 2;
 }
 

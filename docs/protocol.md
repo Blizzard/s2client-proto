@@ -2,7 +2,7 @@
 
 ## Connection
 
-The SC2API is a protobuf based protocol that uses websockets as the connection layer.
+The SC2API is a protobuf based protocol that uses the [WebSockets](https://en.wikipedia.org/wiki/WebSocket) as the connection layer.
 
 The address/port of the websocket server is specified on the command line:
 > -listen 127.0.0.1 -port 5000
@@ -46,7 +46,7 @@ There are two supported options for controlling the game speed:
     * There is no restriction on how fast or slow you can step.
 * **Realtime Mode**
     * The game simulation will automatically advance.
-    * Uses the “faster” game speed (22.4 gameloops per second).
+    * Uses the “faster” game speed (22.4 game loops per second).
 
 When in realtime mode, the Step transition in the above diagram will occur automatically.
 
@@ -152,15 +152,15 @@ This is designed to be the simplest representation of human data that can be con
 
 The full set of functionality of the user interface is represented. However, functionally equivalent parts have been simplified. There are many ways for a human to move the camera, but in this interface it has been simplified to a single action.
 
-The only relevent protocol to this interface is **RequestObservation** and **RequestAction**.
+The only relevant protocol to this interface is **RequestObservation** and **RequestAction**.
 
-The game world and user interface are represented seperately. Both the observation and action have seperate sections for these two components.
+The game world and user interface are represented separately. Both the observation and action have separate sections for these two components.
 
 All positions are based on screen space coordinates. The upper left of the images are (0, 0).
 
 ## Rendered
 
-This exposes the full fidelty rendered frame buffer that a human player sees.
+This exposes the full fidelity rendered frame buffer that a human player sees.
 
 This interface is fully supported on all platforms including Linux. On Linux it supports both hardware and software rendering.
 
@@ -177,7 +177,7 @@ There are two main types of errors in the protocol:
 
 Which requests are allowed at any given time depends on the current status. For example, you are not allowed to send **RequestSaveReplay** if the current status is Launched as it isn’t in a game. When this occurs, the game will send back an empty Response message with only the error field populated.
 
-Many requests have errors that are specific to that type of request. For example, if you send **RequestCreateGame** with a map path that doesn’t exist. When this type of error occurs, the game will send back a Response message with the appropriate response type populated (eg. **ResponseCreateGame**), but with only the error field populated.
+Many requests have errors that are specific to that type of request. For example, if you send **RequestCreateGame** with a map path that doesn’t exist. When this type of error occurs, the game will send back a Response message with the appropriate response type populated (e.g. **ResponseCreateGame**), but with only the error field populated.
 
 ## Action Errors
 
@@ -203,7 +203,7 @@ You can retrieve a listing of what maps are locally cached by using **RequestAva
 
 The game needs all of the original map data in order to play back a replay.
 
-For ladder replays, all the dependencies will be automatially downloaded. ([Not true for linux](linux.md#battlenet-cache))
+For ladder replays, all the dependencies will be automatically downloaded. ([Not true for linux](linux.md#battlenet-cache))
 
 For offline game replays, the original .SC2Map file must be available to play back the replay. This can cause problems when sharing the replay between machines. The simplest workflow is to always store maps in the standard maps directory. This is done by creating a folder named "Maps" in the game install directory.
 
@@ -233,7 +233,7 @@ The order in which units update is also randomized. This makes it so that if two
 
 ## Inaccuracies of Actions
 
-When processing replays, the actions reported may not exactly line up with what occured in the original game.
+When processing replays, the actions reported may not exactly line up with what occurred in the original game.
 
 The protobuf protocol is slightly different than the internal replay format. This can cause slight inaccuracies when converting between these two formats.
 
@@ -252,7 +252,7 @@ Example:
 * For the APM score, every control group recall will be counted.
 * For the EPM score, only the last control group recall will be counted.
  
-Different action type incur a different ammount of APM "score":
+Different action type incur a different amount of APM "score":
 * Command with target = 2
 * Command with no target = 1
 * Selection action = 1
@@ -274,7 +274,7 @@ StarCraft II uses a deterministic game simulation. Replays effectively just cont
  
 This means that to play back the replay deterministically, you need to be running on the exact same version that was used in the original game.
 
-The **Patch Version** (eg. "3.17") corresponds to a specific **Binary Version** and **Data Version**. Patches may update these independently, so they both need to be specified to play back a replay correctly. (eg. There may be multiple data versions that use the same binary version)
+The **Patch Version** (e.g. "3.17") corresponds to a specific **Binary Version** and **Data Version**. Patches may update these independently, so they both need to be specified to play back a replay correctly. (e.g. There may be multiple data versions that use the same binary version)
  
 The **Binary Version** is represented by a **Base Build Number**.
 * On disk, this number is stored in the folder names inside the "Versions" folder.
@@ -309,7 +309,7 @@ You can also get the version information of the binary itself using **RequestPin
 
 ## Downloading Data
 
-On Windows/Mac, only the Binary/Data for the latest patch is guarenteed to be downloaded.
+On Windows/Mac, only the Binary/Data for the latest patch is guaranteed to be downloaded.
 
 The solution to this is to launch the newest version of the game, and request it to download the required old data for you. This is exposed in the API with this field: RequestReplayInfo::download_data
 
