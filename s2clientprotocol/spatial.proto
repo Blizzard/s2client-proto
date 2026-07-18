@@ -85,7 +85,7 @@ message ActionSpatial {
 }
 
 message ActionSpatialUnitCommand {
-  optional int32 ability_id = 1;
+  optional uint32 ability_id = 1;
   oneof target {
     PointI target_screen_coord = 2;
     PointI target_minimap_coord = 3;

@@ -183,7 +183,7 @@ message ActionRaw {
 }
 
 message ActionRawUnitCommand {
-  optional int32 ability_id = 1;
+  optional uint32 ability_id = 1;
   oneof target {
     Point2D target_world_space_pos = 2;
     uint64 target_unit_tag = 3;
@@ -197,6 +197,6 @@ message ActionRawCameraMove {
 }
 
 message ActionRawToggleAutocast {
-  optional int32 ability_id = 1;
+  optional uint32 ability_id = 1;
   repeated uint64 unit_tags = 2;
 }
