@@ -23,7 +23,7 @@ message AbilityData {
     Point = 2;                                                    // Requires a target position.
     Unit = 3;                                                     // Requires a unit to target. Given by position using feature layers.
     PointOrUnit = 4;                                              // Requires either a target point or target unit.
-    PointOrNone = 5;                                              // Requires either a target point or no target. (eg. building add-ons)
+    PointOrNone = 5;                                              // Requires either a target point or no target. (e.g. building add-ons)
   }
 
   optional bool available = 8;                                    // If true, the ability may be used by this set of mods/map.
@@ -64,7 +64,7 @@ message Weapon {
   optional TargetType type = 1;
   optional float damage = 2;
   repeated DamageBonus damage_bonus = 3;
-  optional uint32 attacks = 4;              // Number of hits per attack. (eg. Colossus has 2 beams)
+  optional uint32 attacks = 4;              // Number of hits per attack. (e.g. Colossus has 2 beams)
   optional float range = 5;
   optional float speed = 6;                 // Time between attacks.
 }
