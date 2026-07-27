@@ -41,11 +41,7 @@ The API is available in the retail Windows and Mac clients. There are also Linux
   * A robust architecture for quickly developing Starcraft AI bots.
   * [Repository](https://github.com/davechurchill/CommandCenter)
 * **Bot Ladders**
-  * [SC2AI](http://sc2ai.net/) - Unofficial community organized ladder.
   * [AI Arena](http://aiarena.net/) - Unofficial community organized ladder.
-* **Community Wiki**
-  * Unofficial wiki of documentation and tutorials.
-  * [Website](http://wiki.sc2ai.net/Main_Page)
 * **Discord Server**
   * Unofficial server for discussing AI questions and projects.
   * [Invite Link](https://discord.gg/BH58ZVt)
