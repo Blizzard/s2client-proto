@@ -38,7 +38,7 @@ The API is available in the retail Windows and Mac clients. There are also Linux
   * DeepMind's python environment wrapper. 
   * [Repository](https://github.com/deepmind/pysc2)
 * **CommandCenter**
-  * A robust architecture for quickly developing Starcraft AI bots.
+  * A robust architecture for quickly developing StarCraft AI bots.
   * [Repository](https://github.com/davechurchill/CommandCenter)
 * **Bot Ladders**
   * [SC2AI](http://sc2ai.net/) - Unofficial community organized ladder.
@@ -116,7 +116,7 @@ The default installation directories are:
 
 On Linux, the installation directory is the folder you extracted the linux package into.
 
-The folder structure is the same accross all platforms. However you may need to create some folders if they are missing.
+The folder structure is the same across all platforms. However you may need to create some folders if they are missing.
 
 Standard folder layout:
 * StarCraft II/
@@ -138,6 +138,6 @@ Standard folder layout:
 
 These define the action mappings from ability ids in the protobuf api to the internals of the game.
 They also define some general ids that combine multiple abilities that have a similar semantic meaning
-(eg various forms of burrow, cancel, lift/land, etc). The `stableid.json` is updated occasionally with
+(e.g. various forms of burrow, cancel, lift/land, etc). The `stableid.json` is updated occasionally with
 the game, but can also be updated manually by downloading the `stableid.json` from here and placing it
 in the root of your `StarCraft II` directory.
